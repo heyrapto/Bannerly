@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { CheckIcon } from "lucide-react";
+import Navbar from "../components/shared/Navbar";
 
 const fields = [
   {
@@ -47,6 +48,7 @@ export default function GettingStarted() {
   return (
     <div className="h-screen text-white flex flex-col justify-center items-center">
       {/* Progress indicator */}
+      <Navbar />
       <div className="pt-8 px-6 max-w-3xl mx-auto">
         <div className="flex items-center justify-between w-full mb-12">
           <div className="flex items-center">

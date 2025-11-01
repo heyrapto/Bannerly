@@ -1,12 +1,16 @@
 import { useState, useCallback, useMemo, useRef, useEffect } from "react";
 import { 
   User, Briefcase, Twitter, Github, Search, ChevronDown, 
-  X, Upload, Check, ArrowRight, Eye
+  X, Upload, Check, ArrowRight, Eye,
+  Sparkles,
+  ExternalLink
 } from "lucide-react";
 import { TECH_STACK_CONFIG } from "../config/techStack";
 import { MAX_STACK_SELECTIONS } from "../constants";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import BannerCard from "./BannerCard";
+import Navbar from "./shared/Navbar";
+import { Link } from "react-router-dom";
 
 const initialFormState = {
   name: "",
@@ -295,7 +299,7 @@ const Form = () => {
   }, [filteredTech]);
 
   return (
-    <div className="min-h-screen pt-8 pb-24 flex justify-center items-center">
+    <div className="min-h-screen pt-24 pb-24 flex justify-center items-center">
       <div className="">
         {/* Progress Steps */}
         <div className="mb-12 max-w-3xl mx-auto px-6">

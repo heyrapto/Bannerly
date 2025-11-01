@@ -11,6 +11,7 @@ import SignInComingSoon from './components/SignIn';
 import Blog from './pages/Blog';
 import Explore from './pages/Explore';
 import Gallery from './pages/Gallery';
+import Navbar from './components/shared/Navbar.jsx';
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Router>
