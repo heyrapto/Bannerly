@@ -43,10 +43,10 @@ const SignInComingSoon = () => {
   ];
   
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <div className="text-white overflow-y-hidden">
       <Navbar />
       
-      <div className="flex flex-col lg:flex-row min-h-screen pt-16">
+      <div className="flex flex-col lg:flex-row h-screen pt-24">
         {/* Left Side - Form */}
         <div className="w-full lg:w-1/2 flex flex-col justify-center px-4 md:px-8 lg:px-12 py-12">
           <div className="max-w-md mx-auto w-full">

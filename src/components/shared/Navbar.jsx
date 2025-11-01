@@ -112,7 +112,7 @@ const Navbar = () => {
   return (
     <nav className={`fixed w-full top-0 z-50 transition-all duration-300 ${
       isScrolled 
-        ? "bg-gray-900/90 backdrop-blur-md shadow-lg shadow-black/10" 
+        ? "bg-transparent backdrop-blur-md shadow-lg shadow-black/10" 
         : "bg-transparent"
     }`}>
       {/* New feature announcement banner */}
@@ -170,7 +170,7 @@ const Navbar = () => {
           </div>
           
           {/* Desktop navigation */}
-          <div className="hidden md:block">
+          {/* <div className="hidden md:block">
             <div className="flex items-center space-x-1">
               <NavLink to="/explore">
                 Explore
@@ -250,10 +250,10 @@ const Navbar = () => {
                 Blog
               </NavLink>
             </div>
-          </div>
+          </div> */}
           
           {/* Action buttons */}
-          <div className="hidden md:flex items-center space-x-2">
+          <div className="relative hidden md:flex items-center space-x-2">
             <button 
               onClick={toggleSearch}
               className={`p-2 rounded-full transition-colors ${
