@@ -45,7 +45,7 @@ export default function GettingStarted() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <div className="min-h-screen text-white flex flex-col justify-center items-center">
       {/* Progress indicator */}
       <div className="pt-8 px-6 max-w-3xl mx-auto">
         <div className="flex items-center justify-between w-full mb-12">

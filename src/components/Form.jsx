@@ -295,7 +295,7 @@ const Form = () => {
   }, [filteredTech]);
 
   return (
-    <div className="min-h-screen bg-gray-900 pt-8 pb-24">
+    <div className="min-h-screen pt-8 pb-24 flex justify-center items-center">
       <div className="">
         {/* Progress Steps */}
         <div className="mb-12 max-w-3xl mx-auto px-6">

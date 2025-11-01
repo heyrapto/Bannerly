@@ -4,11 +4,18 @@
 @tailwind components;
 @tailwind utilities;
   
-*{
+* {
     margin: 0;
     padding: 0;
     font-family: "Poppins", serif;
 }
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background: radial-gradient(circle at center, #0c031b 0%, #140c2c 35%, #19082f 60%, #0c031b 100%);
+    overscroll-behavior: none;
+}  
 
 body{
     background: radial-gradient(circle at center, #0c031b 0%, #140c2c 35%, #19082f 60%, #0c031b 100%);
