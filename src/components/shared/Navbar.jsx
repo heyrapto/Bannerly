@@ -57,57 +57,57 @@ const Navbar = () => {
   };
 
   // NavLink component with active state indicator
-  const NavLink = ({ to, children, badge, className = "" }) => (
-    <Link 
-      to={to} 
-      className={`relative px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 group ${
-        isActive(to) 
-          ? "text-white" 
-          : "text-gray-300 hover:text-white"
-      } ${className}`}
-      onClick={closeMenu}
-    >
-      <span className="relative z-10">{children}</span>
-      {badge && (
-        <span className="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/3 flex h-4 w-4">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-4 w-4 bg-purple-600 text-xs flex items-center justify-center">{badge}</span>
-        </span>
-      )}
-      {isActive(to) && (
-        <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-purple-500 to-blue-500 rounded"></span>
-      )} 
-      <span className="absolute inset-0 bg-white/5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity"></span>
-    </Link>
-  );
+  // const NavLink = ({ to, children, badge, className = "" }) => (
+  //   <Link 
+  //     to={to} 
+  //     className={`relative px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 group ${
+  //       isActive(to) 
+  //         ? "text-white" 
+  //         : "text-gray-300 hover:text-white"
+  //     } ${className}`}
+  //     onClick={closeMenu}
+  //   >
+  //     <span className="relative z-10">{children}</span>
+  //     {badge && (
+  //       <span className="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/3 flex h-4 w-4">
+  //         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+  //         <span className="relative inline-flex rounded-full h-4 w-4 bg-purple-600 text-xs flex items-center justify-center">{badge}</span>
+  //       </span>
+  //     )}
+  //     {isActive(to) && (
+  //       <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-purple-500 to-blue-500 rounded"></span>
+  //     )} 
+  //     <span className="absolute inset-0 bg-white/5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity"></span>
+  //   </Link>
+  // );
 
   // Nav dropdown item
-  const DropdownItem = ({ to, icon: Icon, label, description, isNew }) => (
-    <Link 
-      to={to}
-      className="block p-3 rounded-md hover:bg-gray-700/50 transition-colors" 
-      onClick={closeMenu}
-    >
-      <div className="flex items-start">
-        {Icon && (
-          <div className="mt-0.5 bg-gray-800 p-2 rounded-md text-purple-400 mr-3">
-            <Icon className="h-4 w-4" />
-          </div>
-        )}
-        <div>
-          <div className="flex items-center">
-            <span className="text-white font-medium">{label}</span>
-            {isNew && (
-              <span className="ml-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white text-xs px-2 py-0.5 rounded-full font-medium">
-                New
-              </span>
-            )}
-          </div>
-          {description && <p className="text-gray-400 text-xs mt-0.5">{description}</p>}
-        </div>
-      </div>
-    </Link>
-  );
+  // const DropdownItem = ({ to, icon: Icon, label, description, isNew }) => (
+  //   <Link 
+  //     to={to}
+  //     className="block p-3 rounded-md hover:bg-gray-700/50 transition-colors" 
+  //     onClick={closeMenu}
+  //   >
+  //     <div className="flex items-start">
+  //       {Icon && (
+  //         <div className="mt-0.5 bg-gray-800 p-2 rounded-md text-purple-400 mr-3">
+  //           <Icon className="h-4 w-4" />
+  //         </div>
+  //       )}
+  //       <div>
+  //         <div className="flex items-center">
+  //           <span className="text-white font-medium">{label}</span>
+  //           {isNew && (
+  //             <span className="ml-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white text-xs px-2 py-0.5 rounded-full font-medium">
+  //               New
+  //             </span>
+  //           )}
+  //         </div>
+  //         {description && <p className="text-gray-400 text-xs mt-0.5">{description}</p>}
+  //       </div>
+  //     </div>
+  //   </Link>
+  // );
 
   return (
     <nav className={`fixed w-full top-0 z-50 transition-all duration-300 ${
