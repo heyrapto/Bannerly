@@ -1,7 +1,7 @@
-const Button = ({name, styles}) => {
-    return(
-        <button className={`${styles}`}>{name}</button>
-    )
+const Button = () => {
+  return (
+    <div>Button</div>
+  )
 }
 
-export default Button;
+export default Button
