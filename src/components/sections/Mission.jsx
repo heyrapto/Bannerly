@@ -1,0 +1,54 @@
+import { useEffect, useRef } from 'react';
+import { animateTextReveal } from '../../animations/textReveal';
+
+const MissionSection = () => {
+  const sectionRef = useRef(null);
+  const textRef = useRef(null);
+
+  useEffect(() => {
+    const cleanup = animateTextReveal(sectionRef.current, textRef.current);
+    return cleanup;
+  }, []);
+
+  const text = "Design shapes the world 🌐 we live in, 👀 we see it as a journey ✌️ guided by curiosity, grounded in craft, 🤍 and driven by purpose 🔥 We design for people, 💝 to create meaningful connections and spark joy.";
+  
+  const parts = text.split(/(🌐|👀|✌️|🤍|🔥|💝)/g);
+
+  return (
+    <section ref={sectionRef} className="w-screen bg-white">
+      <div className="max-w-[1440px] mx-auto px-6 py-32">
+        <div className="text-center mb-16">
+          <h3 className="text-lg font-medium text-neutral-800">Sand Studio Manifesto</h3>
+        </div>
+        
+        <div ref={textRef} className="text-center max-w-5xl mx-auto">
+          <p className="text-5xl md:text-6xl lg:text-7xl font-medium leading-tight">
+            {parts.map((part, index) => {
+              // If it's an emoji, render it without char class
+              if (/[\u{1F300}-\u{1F9FF}]/u.test(part)) {
+                return (
+                  <span key={index} className="inline-block mx-2">
+                    {part}
+                  </span>
+                );
+              }
+              
+              // For text, split into characters
+              return part.split('').map((char, charIndex) => (
+                <span
+                  key={`${index}-${charIndex}`}
+                  className="char inline-block"
+                  style={{ whiteSpace: char === ' ' ? 'pre' : 'normal' }}
+                >
+                  {char}
+                </span>
+              ));
+            })}
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default MissionSection;

@@ -1,7 +1,109 @@
 const Footer = () => {
   return (
-    <div>Footer</div>
-  )
-}
+    <footer className="w-screen bg-[#2A2A2A]">
+      <div className="max-w-[1440px] mx-auto px-6 py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          {/* Left Content */}
+          <div className="flex flex-col gap-8">
+            <h2 className="text-white text-4xl md:text-5xl font-medium">
+              Want to create something fun together?
+            </h2>
+            
+            <a 
+              href="https://sandstudio.co" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-white text-xl flex items-center gap-2 hover:gap-4 transition-all duration-300"
+            >
+              Go to sandstudio.co 
+              <svg 
+                className="w-5 h-5" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                  strokeWidth={2} 
+                  d="M7 17L17 7M17 7H7M17 7v10" 
+                />
+              </svg>
+            </a>
 
-export default Footer
+            {/* Social Icons */}
+            <div className="flex gap-4 mt-8">
+              {[
+                { icon: 'instagram', label: 'Instagram' },
+                { icon: 'linkedin', label: 'LinkedIn' },
+                { icon: 'facebook', label: 'Facebook' },
+                { icon: 'threads', label: 'Threads' },
+              ].map((social) => (
+                <a
+                  key={social.icon}
+                  href="#"
+                  aria-label={social.label}
+                  className="w-16 h-16 rounded-full bg-white flex items-center justify-center hover:scale-110 transition-transform duration-200"
+                >
+                  <span className="text-2xl text-black">
+                    {social.icon === 'instagram' && (
+                      <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                      </svg>
+                    )}
+                    {social.icon === 'linkedin' && (
+                      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                      </svg>
+                    )}
+                    {social.icon === 'facebook' && (
+                      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 3.667h-3.533v7.98H9.101z"/>
+                      </svg>
+                    )}
+                    {social.icon === 'threads' && (
+                      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.853 13.853 0 0 1 3.02.142l-.126 1.974a11.94 11.94 0 0 0-2.64-.123c-1.053.064-1.875.347-2.44.841-.476.416-.72.992-.684 1.62.031.55.295 1.047.743 1.396.455.355 1.053.538 1.782.544 1.117-.061 1.855-.541 2.353-1.527.2-.396.343-.84.424-1.32l.015-.11c-.015-.072-.026-.141-.04-.213-.093-.477-.184-.96-.184-1.52 0-1.815.983-3.037 2.452-3.045 1.026 0 1.852.494 2.456 1.47.577.93.923 2.159.923 3.284 0 1.454-.39 2.613-1.16 3.446-.83.897-1.987 1.371-3.442 1.408-1.187.031-2.286-.18-3.27-.64-.99-.464-1.797-1.13-2.398-1.983-.602-.853-.942-1.853-1.01-2.97-.068-1.12.18-2.13.738-3.008.558-.878 1.393-1.58 2.479-2.084 1.086-.504 2.373-.756 3.823-.75h.045c1.408.006 2.654.24 3.695.697l-.677 1.915c-.827-.378-1.817-.574-2.942-.577-1.108-.003-2.067.183-2.848.548-.781.365-1.377.873-1.771 1.509-.396.637-.58 1.367-.547 2.17.03.822.275 1.56.728 2.195.454.635 1.069 1.135 1.833 1.487.764.353 1.634.539 2.584.525 1.093-.017 2.016-.308 2.742-.864.772-.591 1.177-1.41 1.228-2.447-.276-.28-.612-.516-.995-.701-1.162-.562-2.614-.832-4.317-.802l-.143 1.972c1.476-.03 2.659.178 3.496.626.836.448 1.31 1.072 1.41 1.855.074.577.021 1.26-.17 2.026.05-.002.1-.005.15-.009 1.126-.055 2.064-.44 2.794-1.145.73-.705 1.1-1.646 1.1-2.8 0-.992-.291-1.968-.865-2.91-.593-.962-1.513-1.448-2.725-1.448-1.093 0-1.933.676-2.418 1.984-.2.54-.327 1.146-.365 1.823l-.006.11z"/>
+                      </svg>
+                    )}
+                  </span>
+                </a>
+              ))}
+            </div>
+
+            {/* Copyright */}
+            <p className="text-gray-400 text-sm mt-4">
+              ©2025 Sand Studio & Co. All rights reserved.
+            </p>
+          </div>
+
+          {/* Right Image */}
+          <div className="flex justify-center lg:justify-end">
+            <div className="w-full max-w-sm">
+              <div className="bg-gray-200 rounded-3xl p-8 aspect-square flex flex-col items-center justify-center gap-4">
+                <div className="relative w-64 h-64">
+                  {/* Vinyl Record */}
+                  <div className="absolute inset-0 bg-black rounded-full flex items-center justify-center">
+                    <div className="w-24 h-24 bg-emerald-500 rounded-full"></div>
+                    <div className="absolute w-12 h-12 bg-gray-300 rounded-full"></div>
+                  </div>
+                  {/* Stickers */}
+                  <div className="absolute top-4 right-8 w-8 h-8 bg-white rounded-full flex items-center justify-center text-xs">👀</div>
+                  <div className="absolute top-12 right-4 w-10 h-10 bg-orange-400 rounded-lg flex items-center justify-center">⭐</div>
+                  <div className="absolute bottom-16 right-6 w-8 h-8 bg-pink-300 rounded-full flex items-center justify-center">❤️</div>
+                  <div className="absolute bottom-24 left-8 w-12 h-6 bg-lime-300 rounded-full"></div>
+                </div>
+                <div className="text-center">
+                  <p className="text-xs text-gray-500">Now Playing:</p>
+                  <p className="text-sm font-medium text-gray-800">Sand Studio Playlist</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
