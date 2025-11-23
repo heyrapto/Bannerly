@@ -1,5 +1,4 @@
 export const Icons = {
-    // Placeholder Logo — replace with your own if needed
     Logo: () => (
       <svg width="100%" height="100%" viewBox="0 0 200 80">
         <text
@@ -15,7 +14,6 @@ export const Icons = {
       </svg>
     ),
   
-    // ❤️ Love / Command-Key Heart
     Love: () => (
       <svg width="100%" height="100%" viewBox="0 0 200 200">
         <rect width="200" height="200" rx="40" fill="#FF4F73" />
@@ -26,7 +24,6 @@ export const Icons = {
       </svg>
     ),
   
-    // 🔥 Fire Icon
     Fire: () => (
       <svg width="100%" height="100%" viewBox="0 0 200 200">
         <path
@@ -37,7 +34,6 @@ export const Icons = {
       </svg>
     ),
   
-    // 🌍 Globe With Eyes
     WorldEye: () => (
       <svg width="100%" height="100%" viewBox="0 0 300 300">
         <circle cx="150" cy="150" r="140" fill="#4DA6FF" />
@@ -56,7 +52,6 @@ export const Icons = {
       </svg>
     ),
   
-    // 🐻 Bear (image from Framer)
     Bear: () => (
       <img
         decoding="auto"
@@ -73,7 +68,6 @@ export const Icons = {
       />
     ),
   
-    // 💬 Designer Speech Bubble
     Designer: () => (
       <svg width="100%" height="100%" viewBox="0 0 260 120">
         <rect
@@ -104,7 +98,6 @@ export const Icons = {
       </svg>
     ),
   
-    // ✌️ Peace Sign Hand
     PeaceSign: () => (
       <svg width="100%" height="100%" viewBox="0 0 200 200">
         <path
@@ -117,7 +110,6 @@ export const Icons = {
       </svg>
     ),
   
-    // 🔵 Blue Banner
     Banner: () => (
       <svg width="100%" height="100%" viewBox="0 0 400 150">
         <rect width="400" height="150" rx="75" fill="#2D68FF" />

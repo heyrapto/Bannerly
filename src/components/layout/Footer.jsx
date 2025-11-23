@@ -6,16 +6,16 @@ const Footer = () => {
           {/* Left Content */}
           <div className="flex flex-col gap-8">
             <h2 className="text-white text-4xl md:text-5xl font-medium">
-              Want to create something fun together?
+              Create a banner once, <br /> use anywhere.
             </h2>
             
             <a 
-              href="https://sandstudio.co" 
+              href="/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-white text-xl flex items-center gap-2 hover:gap-4 transition-all duration-300"
             >
-              Go to sandstudio.co 
+              Start creating
               <svg 
                 className="w-5 h-5" 
                 fill="none" 
@@ -73,33 +73,12 @@ const Footer = () => {
 
             {/* Copyright */}
             <p className="text-gray-400 text-sm mt-4">
-              ©2025 Sand Studio & Co. All rights reserved.
+              ©2025 Bannerly. All rights reserved.
             </p>
           </div>
 
           {/* Right Image */}
-          <div className="flex justify-center lg:justify-end">
-            <div className="w-full max-w-sm">
-              <div className="bg-gray-200 rounded-3xl p-8 aspect-square flex flex-col items-center justify-center gap-4">
-                <div className="relative w-64 h-64">
-                  {/* Vinyl Record */}
-                  <div className="absolute inset-0 bg-black rounded-full flex items-center justify-center">
-                    <div className="w-24 h-24 bg-emerald-500 rounded-full"></div>
-                    <div className="absolute w-12 h-12 bg-gray-300 rounded-full"></div>
-                  </div>
-                  {/* Stickers */}
-                  <div className="absolute top-4 right-8 w-8 h-8 bg-white rounded-full flex items-center justify-center text-xs">👀</div>
-                  <div className="absolute top-12 right-4 w-10 h-10 bg-orange-400 rounded-lg flex items-center justify-center">⭐</div>
-                  <div className="absolute bottom-16 right-6 w-8 h-8 bg-pink-300 rounded-full flex items-center justify-center">❤️</div>
-                  <div className="absolute bottom-24 left-8 w-12 h-6 bg-lime-300 rounded-full"></div>
-                </div>
-                <div className="text-center">
-                  <p className="text-xs text-gray-500">Now Playing:</p>
-                  <p className="text-sm font-medium text-gray-800">Sand Studio Playlist</p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <img src="/images/hero-card.webp" alt="" />
         </div>
       </div>
     </footer>

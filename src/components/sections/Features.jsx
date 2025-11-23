@@ -1,24 +1,29 @@
+import { FaReact } from "react-icons/fa";
+import { IoLogoJavascript } from "react-icons/io5";
+import { SiPhp } from "react-icons/si";
+import { FaGolang } from "react-icons/fa6";
+
 const FeatureCard = ({ className = "", children }) => (
-    <div className={`rounded-3xl p-8 h-full flex flex-col justify-between ${className}`}>
+    <div className={`rounded-3xl p-8 h-full flex flex-col justify-between overflow-hidden relative ${className}`}>
       {children}
     </div>
-  );
-  
-  const FeaturesSection = () => {
+);
+
+const FeaturesSection = () => {
     const cards = [
       {
         id: 1,
         className: "bg-[#C8B8A6]",
         content: (
           <>
-            <div className="text-left">
+            <div className="text-left text-neutral-800">
               <h2 className="text-3xl font-semibold mb-6">What’s in the Box</h2>
               <ul className="space-y-3 text-lg">
                 {[
-                  "16+ Crafted pieces",
+                  "100+ banners created",
                   "Designer’s tear (of joy)",
                   "Creative energy",
-                  "Lots of good vibes",
+                  "Lots of template Options",
                 ].map((item, i) => (
                   <li key={i}>✔️ {item}</li>
                 ))}
@@ -26,7 +31,7 @@ const FeatureCard = ({ className = "", children }) => (
             </div>
             <div className="mt-8 w-full flex justify-center">
               <img
-                src="/mnt/data/Image 21-11-2025 at 22.23.png"
+                src="/images/cool.webp"
                 alt="Stickers"
                 className="w-[90%] rounded-xl"
               />
@@ -39,47 +44,52 @@ const FeatureCard = ({ className = "", children }) => (
         id: 2,
         className: "bg-[#EB4C70] text-left",
         content: (
-          <>
-            <div>
-              <h2 className="text-3xl font-semibold mb-4">Stick with meaning</h2>
+          <div className="md:h-full h-[300px]">
+            <div className="relative overflow-hidden">
+              <h2 className="text-3xl font-medium mb-4 text-white/90">Quick Generation</h2>
               <p className="text-sm leading-relaxed text-white/90 max-w-xs">
-                We made stickers that stick with you (literally). After all, great design deserves to go wherever you do.
+              Create professional banners in seconds with our streamlined design process and templates.
               </p>
             </div>
             <div className="w-full flex justify-end">
-              <div className="w-40 h-28 bg-gray-200 rounded-2xl flex items-center justify-center">
+              <div className="w-[400px] h-[200px] bg-gray-300 rounded-2xl flex items-center justify-center -bottom-16 -right-20 absolute">
                 <span className="text-black text-4xl"></span>
               </div>
             </div>
-          </>
+          </div>
         ),
         group: "middle",
       },
-  
       {
         id: 3,
         className: "bg-[#D8E7FA] text-left",
         content: (
-          <>
-            <h2 className="text-3xl font-semibold mb-3">Designed for humans</h2>
-            <p className="text-sm text-neutral-800 leading-relaxed max-w-md">
-              We’re a UX/UI studio with a tight-knit team of designers, thinkers, and makers crafting digital experiences people actually enjoy.
+          <div className="mt-auto relative md:h-full h-[450px]">
+            <h2 className="text-4xl font-medium mb-3 max-w-[15rem] text-blue-900">Social Integration</h2>
+            <p className="text-sm text-blue-900 leading-relaxed max-w-md">
+            Seamlessly connect your social profiles to import data and share your new banner with your network.
             </p>
-          </>
+            <div className="absolute right-0 bottom-5">
+                <img src="/images/socials.webp" className="w-[350px]" alt="" />
+            </div>
+          </div>
         ),
         group: "middle",
       },
-  
       {
         id: 4,
         className: "bg-[#DDF9C8] text-left",
         content: (
           <>
-            <div>
-              <h2 className="text-3xl font-semibold mb-2">Water resistance.</h2>
-              <h2 className="text-3xl font-semibold mb-4">Bad vibes proof.</h2>
+            <div className="text-yellow-900">
+              <h2 className="text-3xl font-medium ">Skills showcase.</h2>
+              <h2 className="text-3xl font-medium mb-4">Showcase your expertise.</h2>
             </div>
-            <div className="text-5xl tracking-widest">⌐■_■</div>
+            <div className="text-5xl tracking-widest flex gap-2">
+                <FaReact size={50} className="text-blue-500" />
+                <IoLogoJavascript size={50} className="text-yellow-500" />
+                <FaGolang size={50} className="text-blue-900" />
+            </div>
           </>
         ),
         group: "right",
@@ -87,7 +97,7 @@ const FeatureCard = ({ className = "", children }) => (
     ];
   
     return (
-      <section className="w-screen bg-neutral-200">
+      <section className="w-screen bg-neutral-200 z-10">
         <div className="max-w-[1440px] mx-auto flex flex-col text-center px-6 py-20 gap-12">
           <h1 className="text-2xl">Hangout with us</h1>
   
@@ -135,7 +145,7 @@ const FeatureCard = ({ className = "", children }) => (
         </div>
       </section>
     );
-  };
+};
   
   export default FeaturesSection;
   

@@ -59,8 +59,6 @@ import flutterflow from './svg/flutterflow.svg'
 import fastapi from './svg/fastapi.svg'
 import springboot from './svg/springboot.svg'
 import webassembly from './svg/webassembly.svg'
-import RaptoBanner from "./coming-soon/rapto-banner.png"
-import RaptoPFP from "./coming-soon/rapto.png"
 
 export {
   David,
@@ -124,6 +122,4 @@ export {
   fastapi,
   springboot,
   webassembly,
-  RaptoBanner,
-  RaptoPFP
 }
