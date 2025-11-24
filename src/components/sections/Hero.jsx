@@ -40,7 +40,7 @@ const HeroSection = () => {
             </FloatingIcon>
 
             <FloatingIcon className="top-[30%] right-[20%] w-24 sm:w-32 rotate-[0deg]">
-            <Icons.Bear />
+                <Icons.Bear />
             </FloatingIcon>
 
             <FloatingIcon className="top-[20%] right-[5%] w-20 sm:w-28 rotate-[-6deg]">
@@ -50,7 +50,7 @@ const HeroSection = () => {
             </FloatingIcon>
 
             <FloatingIcon className="top-[50%] right-[10%] w-24 sm:w-[200px] rotate-[10deg] hidden sm:block">
-            <Icons.Banner />
+                <Icons.Banner />
             </FloatingIcon>
 
             <FloatingIcon className="bottom-[20%] right-[20%] w-16 sm:w-24 rotate-[-20deg]">
@@ -62,14 +62,14 @@ const HeroSection = () => {
             {/* Main Content */}
             <div className="flex flex-col items-center text-center z-10">
                 <h2 className="text-gray-500 text-lg sm:text-xl tracking-wide">
-                Drop Zone
+                    Drop Zone
                 </h2>
 
                 <h1 className="text-3xl sm:text-3xl lg:text-4xl font-light mt-3 lg:w-[600px] w-full lg:leading-[40px]">
-                Create stunning, personalized banners with built-in tools and powerful customization options.
+                    Create stunning, personalized banners with built-in tools and powerful customization options.
                 </h1>
 
-                <Button className="mt-6" size="lg" onClick={() => navigate('/dashboard')}>
+                <Button className="mt-6" size="lg" onClick={() => navigate('/editor')}>
                     Start Creating
                 </Button>
 
