@@ -31,7 +31,7 @@ const EditorLayout = ({
                     {canvas}
 
                     {/* Bottom Slides Panel */}
-                    <div className="h-48 bg-white border-t border-gray-200 z-30">
+                    <div className=" bg-white border-t border-gray-200 z-30">
                         <SlidesPanel
                             slides={slides}
                             activeSlideIndex={activeSlideIndex}

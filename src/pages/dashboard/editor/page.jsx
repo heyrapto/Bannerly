@@ -8,6 +8,7 @@ import Canvas from "./components/Canvas";
 import PropertiesPanel from "./components/PropertiesPanel";
 import BannerCard from "./components/BannerCard";
 import { PRESET_THEMES, PATTERN_STYLES } from "./constants";
+import LoadingScreen from "./components/LoadingScreen";
 
 const initialFormState = {
     name: "",
@@ -24,6 +25,14 @@ const Editor = () => {
         data: initialFormState
     }]);
     const [activeSlideIndex, setActiveSlideIndex] = useState(0);
+    const [isLoading, setIsLoading] = useState(true);
+
+    React.useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false);
+        }, 1500);
+        return () => clearTimeout(timer);
+    }, []);
 
     // Legacy state for tech stack (global for now, or per slide? Assuming per slide for better UX, but keeping simple first)
     // Actually, tech stack should probably be per slide too if we want them to be different.
@@ -99,6 +108,10 @@ const Editor = () => {
     const handleThemeSelect = (themeValue) => {
         setFormData(prev => ({ ...prev, rgbabackground: themeValue }));
     };
+
+    if (isLoading) {
+        return <LoadingScreen />;
+    }
 
     return (
         <EditorLayout

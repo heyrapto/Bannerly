@@ -4,9 +4,11 @@ import { Menu, Transition, Popover } from '@headlessui/react';
 import { PRESET_THEMES } from '../constants';
 import { downloadImage } from '../../../../utils/downloadImage';
 import ShortcutsModal from './ShortcutsModal';
+import ShareModal from './ShareModal';
 
 const Header = ({ onThemeSelect, bannerRef }) => {
     const [isShortcutsOpen, setIsShortcutsOpen] = useState(false);
+    const [isShareOpen, setIsShareOpen] = useState(false);
 
     const handleExport = async (scale) => {
         if (!bannerRef || !bannerRef.current) {
@@ -36,14 +38,14 @@ const Header = ({ onThemeSelect, bannerRef }) => {
     };
 
     return (
-        <header className="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-4 z-40 relative">
+        <header className="h-16 flex items-center justify-between px-4 z-40 relative">
             {/* Left: Logo & Navigation */}
             <div className="flex items-center gap-6">
                 <div className="flex items-center gap-2">
                     <div className="w-8 h-8 bg-gray-900 rounded-lg flex items-center justify-center text-white font-mono font-bold">
                         {`<>`}
                     </div>
-                    <span className="font-bold text-gray-900 text-lg">snappify</span>
+                    <span className="font-bold text-gray-900 text-lg">bannerly</span>
                 </div>
 
                 <div className="flex items-center gap-1 bg-white border border-gray-200 rounded-lg p-1">
@@ -173,7 +175,10 @@ const Header = ({ onThemeSelect, bannerRef }) => {
                     </Transition>
                 </Menu>
 
-                <button className="flex items-center gap-2 px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white text-sm font-medium rounded-lg transition-colors shadow-sm">
+                <button
+                    onClick={() => setIsShareOpen(true)}
+                    className="flex items-center gap-2 px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white text-sm font-medium rounded-lg transition-colors shadow-sm"
+                >
                     <Share2 size={16} />
                     Share
                 </button>
@@ -191,7 +196,10 @@ const Header = ({ onThemeSelect, bannerRef }) => {
 
                 <div className="h-8 w-px bg-gray-200"></div>
 
-                <button className="flex items-center gap-2 px-3 py-1.5 border border-gray-200 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+                <button
+                    onClick={() => setIsShortcutsOpen(true)}
+                    className="flex items-center gap-2 px-3 py-1.5 border border-gray-200 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+                >
                     <Keyboard size={16} />
                     Shortcuts
                 </button>
@@ -200,6 +208,10 @@ const Header = ({ onThemeSelect, bannerRef }) => {
                     <User size={18} />
                 </button>
             </div >
+
+            {/* Modals */}
+            <ShortcutsModal isOpen={isShortcutsOpen} onClose={() => setIsShortcutsOpen(false)} />
+            <ShareModal isOpen={isShareOpen} onClose={() => setIsShareOpen(false)} />
         </header >
     );
 };

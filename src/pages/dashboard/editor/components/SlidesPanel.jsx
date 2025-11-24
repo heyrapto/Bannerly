@@ -1,14 +1,21 @@
 import React from 'react';
-import { Plus, RotateCcw, X, MoreHorizontal } from 'lucide-react';
+import { Plus, RotateCcw, X, ChevronDown, ChevronUp } from 'lucide-react';
 
 const SlidesPanel = ({ slides = [], activeSlideIndex = 0, onAddSlide, onRemoveSlide, onSelectSlide }) => {
+    const [isExpanded, setIsExpanded] = React.useState(true);
+
     return (
-        <div className="h-full flex flex-col relative bg-gray-50">
-            {/* Floating Reset Button (Absolute positioned relative to this panel or canvas?) 
-                Actually, the reference shows it floating above the panel. 
-                Let's keep it here for now or move it if needed. 
-            */}
-            <div className="absolute -top-12 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-lg border border-gray-200 z-40">
+        <div className={`relative bg-gray-50 border-t border-gray-200 transition-all duration-300 ease-in-out ${isExpanded ? 'h-48' : 'h-0'}`}>
+            {/* Toggle Button */}
+            <button
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="absolute -top-3 left-1/2 -translate-x-1/2 w-12 h-6 bg-white border border-gray-200 border-b-0 rounded-t-lg flex items-center justify-center text-gray-500 hover:text-gray-700 z-40 shadow-sm"
+            >
+                {isExpanded ? <ChevronDown size={16} /> : <ChevronUp size={16} />}
+            </button>
+
+            {/* Floating Reset Button */}
+            <div className={`absolute left-1/2 -translate-x-1/2 flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-lg border border-gray-200 z-40 transition-all duration-300 ${isExpanded ? '-top-16' : '-top-12'}`}>
                 <button className="flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-gray-900">
                     <RotateCcw size={14} />
                     Reset Viewport
@@ -16,12 +23,12 @@ const SlidesPanel = ({ slides = [], activeSlideIndex = 0, onAddSlide, onRemoveSl
             </div>
 
             {/* Slides List */}
-            <div className="flex-1 p-4 overflow-x-auto flex items-center gap-4">
+            <div className={`w-full h-full p-4 overflow-x-auto flex items-center gap-4`}>
                 {slides.map((slide, index) => (
                     <div
                         key={slide.id}
                         onClick={() => onSelectSlide(index)}
-                        className={`relative group flex-shrink-0 w-64 aspect-video rounded-lg border-2 transition-all cursor-pointer overflow-hidden
+                        className={`relative group flex-shrink-0 w-40 aspect-video rounded-lg border-2 transition-all cursor-pointer overflow-hidden
                             ${index === activeSlideIndex
                                 ? 'border-blue-500 ring-2 ring-blue-500/20 shadow-md'
                                 : 'border-gray-200 hover:border-gray-300'
@@ -69,7 +76,7 @@ const SlidesPanel = ({ slides = [], activeSlideIndex = 0, onAddSlide, onRemoveSl
                 {/* Add Slide Button */}
                 <button
                     onClick={onAddSlide}
-                    className="flex-shrink-0 w-64 aspect-video rounded-lg border-2 border-dashed border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-all flex flex-col items-center justify-center gap-2 text-gray-500 hover:text-blue-600 group"
+                    className="flex-shrink-0 w-40 aspect-video rounded-lg border-2 border-dashed border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-all flex flex-col items-center justify-center gap-2 text-gray-500 hover:text-blue-600 group"
                 >
                     <div className="w-10 h-10 rounded-full bg-gray-100 group-hover:bg-blue-100 flex items-center justify-center transition-colors">
                         <Plus size={20} />
