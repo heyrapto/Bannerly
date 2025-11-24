@@ -5,16 +5,24 @@ const MobileWarningModal = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
-        // Check if mobile
-        const isMobile = window.innerWidth < 768;
-        // Check if already shown in this session
-        const hasShown = sessionStorage.getItem('mobileWarningShown');
+        const checkMobile = () => {
+            const isMobile = window.innerWidth < 768;
+            // For testing purposes, we're removing the sessionStorage check so it always shows on mobile
+            // const hasShown = sessionStorage.getItem('mobileWarningShown');
 
-        if (isMobile && !hasShown) {
-            setIsOpen(true);
-            sessionStorage.setItem('mobileWarningShown', 'true');
-        }
-    }, []);
+            if (isMobile && !isOpen) {
+                setIsOpen(true);
+                // sessionStorage.setItem('mobileWarningShown', 'true');
+            }
+        };
+
+        // Check on mount
+        checkMobile();
+
+        // Check on resize
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, [isOpen]);
 
     if (!isOpen) return null;
 
