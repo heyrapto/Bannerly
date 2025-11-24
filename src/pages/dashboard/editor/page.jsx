@@ -21,6 +21,7 @@ const initialFormState = {
     techStackStyle: "glass",
     iconSize: 32,
     techStackIndividual: false,
+    showWatermark: true,
 };
 
 const Editor = () => {
@@ -136,6 +137,8 @@ const Editor = () => {
             onAddSlide={handleAddSlide}
             onRemoveSlide={handleRemoveSlide}
             onSelectSlide={handleSelectSlide}
+            selectedTech={selectedTech}
+            availableLanguages={TECH_STACK_CONFIG}
             sidebar={
                 <Sidebar
                     activeTool={activeTool}

@@ -7,6 +7,8 @@ import { MAX_STACK_SELECTIONS } from '../../../../constants';
 
 import { uploadImage } from '../../../../utils/uploadImage';
 import AIChat from './AIChat';
+import { useAuth } from '../../../../context/AuthContext';
+import { Lock } from 'lucide-react';
 
 const PropertiesPanel = ({
     activeTool,
@@ -22,6 +24,7 @@ const PropertiesPanel = ({
     const [isUploading, setIsUploading] = useState(false);
     const dropdownRef = useRef(null);
     const fileInputRef = useRef(null);
+    const { user } = useAuth();
 
     // Close dropdown when clicking outside
     useEffect(() => {

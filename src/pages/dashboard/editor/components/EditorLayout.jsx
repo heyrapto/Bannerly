@@ -16,7 +16,9 @@ const EditorLayout = ({
     activeSlideIndex,
     onAddSlide,
     onRemoveSlide,
-    onSelectSlide
+    onSelectSlide,
+    selectedTech,
+    availableLanguages
 }) => {
     const [mobileActivePanel, setMobileActivePanel] = React.useState(null);
 
@@ -58,6 +60,8 @@ const EditorLayout = ({
                             onAddSlide={onAddSlide}
                             onRemoveSlide={onRemoveSlide}
                             onSelectSlide={onSelectSlide}
+                            selectedTech={selectedTech}
+                            availableLanguages={availableLanguages}
                         />
                     </div>
                 </div>

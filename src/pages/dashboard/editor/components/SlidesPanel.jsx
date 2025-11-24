@@ -1,7 +1,9 @@
 import React from 'react';
 import { Plus, RotateCcw, X, ChevronDown, ChevronUp } from 'lucide-react';
 
-const SlidesPanel = ({ slides = [], activeSlideIndex = 0, onAddSlide, onRemoveSlide, onSelectSlide }) => {
+import BannerCard from './BannerCard';
+
+const SlidesPanel = ({ slides = [], activeSlideIndex = 0, onAddSlide, onRemoveSlide, onSelectSlide, selectedTech = [], availableLanguages = [] }) => {
     const [isExpanded, setIsExpanded] = React.useState(true);
 
     return (
@@ -40,22 +42,17 @@ const SlidesPanel = ({ slides = [], activeSlideIndex = 0, onAddSlide, onRemoveSl
                             `}
                         >
                             {/* Slide Preview (Miniature) */}
-                            <div className="w-full h-full bg-gray-100 flex items-center justify-center relative">
-                                {/* Background Preview */}
-                                <div
-                                    className="absolute inset-0"
-                                    style={{
-                                        background: slide.data.rgbabackground,
-                                        backgroundSize: 'cover',
-                                        backgroundPosition: 'center'
-                                    }}
-                                />
-
-                                {/* Content Placeholder */}
-                                <div className="relative z-10 flex flex-col items-center gap-2 opacity-50 scale-50">
-                                    <div className="w-12 h-12 bg-white rounded-full shadow-sm"></div>
-                                    <div className="w-32 h-4 bg-white rounded shadow-sm"></div>
-                                    <div className="w-24 h-3 bg-white rounded shadow-sm"></div>
+                            <div className="w-full h-full bg-gray-100 flex items-center justify-center relative overflow-hidden">
+                                {/* Scaled Banner Card */}
+                                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                    <div className="origin-center scale-[0.12] md:scale-[0.2]">
+                                        <BannerCard
+                                            formData={slide.data}
+                                            setFormData={() => { }} // Read-only
+                                            selectedTech={selectedTech}
+                                            availableLanguages={availableLanguages}
+                                        />
+                                    </div>
                                 </div>
                             </div>
 
