@@ -86,7 +86,7 @@ const Settings = () => {
             </div>
 
             {/* Notifications & Security */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
                     <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2 mb-4">
                         <Bell size={20} className="text-gray-400" />
@@ -118,7 +118,7 @@ const Settings = () => {
                         </button>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 };

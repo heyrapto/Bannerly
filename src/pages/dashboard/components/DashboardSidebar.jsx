@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, LayoutTemplate, GraduationCap, BookOpen, Settings, LogOut } from 'lucide-react';
+import { Home, LayoutTemplate, GraduationCap, BookOpen, Settings, LogOut, Trophy } from 'lucide-react';
 import { useAuth } from '../../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,10 +8,10 @@ const DashboardSidebar = ({ activeView, setActiveView }) => {
     const navigate = useNavigate();
 
     const menuItems = [
-        { id: 'snaps', label: 'Snaps', icon: Home },
+        { id: 'home', label: 'Home', icon: Home },
         { id: 'templates', label: 'Templates', icon: LayoutTemplate },
+        { id: 'leaderboard', label: 'Leaderboard', icon: Trophy },
         { id: 'tutorials', label: 'Tutorials', icon: GraduationCap },
-        { id: 'documentation', label: 'Documentation', icon: BookOpen },
         { id: 'settings', label: 'Settings', icon: Settings },
     ];
 
