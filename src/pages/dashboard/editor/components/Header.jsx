@@ -5,9 +5,9 @@ import { PRESET_THEMES } from '../constants';
 import { downloadImage } from '../../../../utils/downloadImage';
 import ShortcutsModal from './ShortcutsModal';
 import ShareModal from './ShareModal';
-import ShareModal from './ShareModal';
-import SignInModal from '../../../../../components/auth/SignInModal';
-import { useAuth } from '../../../../../context/AuthContext';
+import SignInModal from '../../../../components/auth/SignInModal';
+import { useAuth } from '../../../../context/AuthContext';
+import { useToast } from '../../../../context/ToastContext';
 import { useNavigate } from 'react-router-dom';
 
 const Header = ({ onThemeSelect, bannerRef }) => {
@@ -15,6 +15,7 @@ const Header = ({ onThemeSelect, bannerRef }) => {
     const [isShareOpen, setIsShareOpen] = useState(false);
     const [isSignInOpen, setIsSignInOpen] = useState(false);
     const { user, logout } = useAuth();
+    const { addToast } = useToast();
     const navigate = useNavigate();
 
     const handleExport = async (scale) => {
@@ -47,12 +48,10 @@ const Header = ({ onThemeSelect, bannerRef }) => {
     return (
         <header className="h-16 flex items-center justify-between px-4 z-40 relative">
             {/* Left: Logo & Navigation */}
-            <div className="flex items-center gap-6">
-                <div className="flex items-center gap-2" onClick={() => navigate("/")}>
-                    <div className="w-8 h-8 bg-gray-900 rounded-lg flex items-center justify-center text-white font-mono font-bold">
-                        {`<>`}
-                    </div>
-                    <span className="font-bold text-gray-900 text-lg hidden md:block">Bannerly</span>
+            <div className="flex items-center gap-6 cursor-pointer">
+                <div className="flex items-center" onClick={() => navigate("/")}>
+                    <img src="/logo.svg" width={50} alt="" />
+                    <span className="font-bold text-neutral-700 text-lg hidden md:block">bannerly</span>
                 </div>
 
                 <div className="hidden md:flex items-center gap-1 bg-white border border-gray-200 rounded-lg p-1">
@@ -189,7 +188,10 @@ const Header = ({ onThemeSelect, bannerRef }) => {
                     <Share2 size={16} />
                     <span className="hidden md:inline">Share</span>
                 </button>
-                <button className="hidden md:flex items-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white text-sm font-medium rounded-lg transition-colors shadow-sm">
+                <button
+                    onClick={() => addToast("Presentation mode coming soon!", "info")}
+                    className="hidden md:flex items-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white text-sm font-medium rounded-lg transition-colors shadow-sm"
+                >
                     <MonitorPlay size={16} />
                     Present
                 </button>

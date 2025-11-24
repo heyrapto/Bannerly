@@ -238,7 +238,7 @@ const PropertiesPanel = ({
                                             key={tech.name}
                                             onClick={() => handleTechSelect(tech.name)}
                                             disabled={selectedTech.includes(tech.name) || (selectedTech.length >= MAX_STACK_SELECTIONS && !selectedTech.includes(tech.name))}
-                                            className={`w - full flex items - center gap - 3 px - 3 py - 2 text - sm text - left transition - colors
+                                            className={`w-full flex items-center gap-3 px-3 py-2 text-sm text-left transition-colors
                                                 ${selectedTech.includes(tech.name) ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'}
                                                 ${(selectedTech.length >= MAX_STACK_SELECTIONS && !selectedTech.includes(tech.name)) ? 'opacity-50 cursor-not-allowed' : ''}
 `}
@@ -264,6 +264,36 @@ const PropertiesPanel = ({
                     <h3 className="text-lg font-bold text-gray-900">Background</h3>
                     <div className="bg-green-100 p-1 rounded">
                         <Layout size={16} className="text-green-600" />
+                    </div>
+                </div>
+
+                {/* Layout Selector */}
+                <div className="mb-6">
+                    <label className="block text-gray-900 font-medium mb-2">Layout</label>
+                    <div className="grid grid-cols-2 gap-2">
+                        <button
+                            onClick={() => handleFormChange({ target: { name: 'layout', value: 'standard' } })}
+                            className={`py-2 px-3 rounded-lg border text-sm font-medium transition-all flex flex-col items-center gap-2 ${formData.layout !== 'modern' ? 'border-blue-500 bg-blue-50 text-blue-700' : 'border-gray-200 hover:bg-gray-50 text-gray-600'}`}
+                        >
+                            <div className="w-full h-8 bg-gray-200 rounded flex flex-col items-center justify-center gap-0.5">
+                                <div className="w-8 h-1 bg-gray-400 rounded-full"></div>
+                                <div className="w-12 h-1 bg-gray-400 rounded-full"></div>
+                            </div>
+                            Standard
+                        </button>
+                        <button
+                            onClick={() => handleFormChange({ target: { name: 'layout', value: 'modern' } })}
+                            className={`py-2 px-3 rounded-lg border text-sm font-medium transition-all flex flex-col items-center gap-2 ${formData.layout === 'modern' ? 'border-blue-500 bg-blue-50 text-blue-700' : 'border-gray-200 hover:bg-gray-50 text-gray-600'}`}
+                        >
+                            <div className="w-full h-8 bg-gray-200 rounded flex items-center justify-between px-2">
+                                <div className="flex flex-col gap-0.5">
+                                    <div className="w-6 h-1 bg-gray-400 rounded-full"></div>
+                                    <div className="w-4 h-1 bg-gray-400 rounded-full"></div>
+                                </div>
+                                <div className="w-4 h-4 bg-gray-400 rounded-full"></div>
+                            </div>
+                            Modern
+                        </button>
                     </div>
                 </div>
 
@@ -305,7 +335,11 @@ const PropertiesPanel = ({
                     </div>
                     <div className="flex bg-gray-100 p-1 rounded-lg">
                         {['None', 'Small', 'Medium', 'Large'].map(size => (
-                            <button key={size} className={`flex-1 py-1.5 text-xs font-medium rounded-md ${size === 'Medium' ? 'bg-white shadow-sm text-gray-900' : 'text-gray-500 hover:text-gray-900'} `}>
+                            <button
+                                key={size}
+                                onClick={() => handleFormChange({ target: { name: 'padding', value: size } })}
+                                className={`flex-1 py-1.5 text-xs font-medium rounded-md ${formData.padding === size ? 'bg-white shadow-sm text-gray-900' : 'text-gray-500 hover:text-gray-900'} `}
+                            >
                                 {size}
                             </button>
                         ))}

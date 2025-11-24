@@ -5,11 +5,11 @@ const SlidesPanel = ({ slides = [], activeSlideIndex = 0, onAddSlide, onRemoveSl
     const [isExpanded, setIsExpanded] = React.useState(true);
 
     return (
-        <div className={`relative bg-gray-50 border-t border-gray-200 transition-all duration-300 ease-in-out ${isExpanded ? 'h-48' : 'h-0'}`}>
+        <div className={`relative bg-gray-50 border-t border-gray-200 transition-all duration-300 ease-in-out ${isExpanded ? 'h-40' : 'h-2'} md:h-auto`}>
             {/* Toggle Button */}
             <button
                 onClick={() => setIsExpanded(!isExpanded)}
-                className="absolute -top-3 left-1/2 -translate-x-1/2 w-12 h-6 bg-white border border-gray-200 border-b-0 rounded-t-lg flex items-center justify-center text-gray-500 hover:text-gray-700 z-40 shadow-sm"
+                className="absolute -top-3 left-1/2 -translate-x-1/2 w-12 h-6 bg-white border border-gray-200 border-b-0 rounded-t-lg hidden md:flex items-center justify-center text-gray-500 hover:text-gray-700 z-40 shadow-sm"
             >
                 {isExpanded ? <ChevronDown size={16} /> : <ChevronUp size={16} />}
             </button>
@@ -24,7 +24,7 @@ const SlidesPanel = ({ slides = [], activeSlideIndex = 0, onAddSlide, onRemoveSl
 
             {/* Slides List Container */}
             <div
-                className={`relative bg-gray-50 transition-all duration-300 ease-in-out overflow-hidden ${isExpanded ? 'max-h-32 md:max-h-48 border-t border-gray-200' : 'max-h-0 border-t-0'}`}
+                className={`relative bg-gray-50 transition-all duration-300 ease-in-out overflow-hidden ${isExpanded ? 'max-h-32 md:max-h-48 border-t border-gray-200' : 'max-h-0 border-t-0'} h-32 md:h-auto`}
             >
                 {/* Slides List */}
                 <div className="w-full h-full p-2 md:p-4 overflow-x-auto flex items-center gap-2 md:gap-4">

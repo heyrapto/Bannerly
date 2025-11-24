@@ -16,6 +16,7 @@ const initialFormState = {
     twitter: "",
     github: "",
     rgbabackground: "linear-gradient(to right, #4f46e5, #9333ea)",
+    layout: "standard",
 };
 
 const Editor = () => {
@@ -126,6 +127,7 @@ const Editor = () => {
                 <Canvas bannerRef={bannerRef}>
                     <BannerCard
                         formData={formData}
+                        setFormData={setFormData}
                         selectedTech={selectedTech}
                         availableLanguages={TECH_STACK_CONFIG}
                     />

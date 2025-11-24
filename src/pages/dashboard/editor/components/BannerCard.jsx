@@ -2,7 +2,7 @@ import React from 'react';
 import { Twitter, Github, MapPin, Link as LinkIcon } from 'lucide-react';
 import { PATTERN_STYLES } from '../constants';
 
-const BannerCard = ({ formData, selectedTech, availableLanguages }) => {
+const BannerCard = ({ formData, setFormData, selectedTech, availableLanguages }) => {
     // Helper to get pattern style if background matches a preset
     // In a real app, we might store pattern info in formData directly
     const getBackgroundStyle = () => {
@@ -31,51 +31,82 @@ const BannerCard = ({ formData, selectedTech, availableLanguages }) => {
             <div className="absolute inset-0 bg-black/10 backdrop-blur-[1px]" />
 
             {/* Content Container */}
-            <div className="relative z-10 flex flex-col items-center gap-6 w-full px-12">
+            <div className={`relative z-10 flex ${formData.layout === 'modern' ? 'flex-row justify-between text-left px-16' : 'flex-col items-center text-center px-12'} gap-6 w-full`}>
 
                 {/* Main Info */}
-                <div className="text-center space-y-2">
-                    <h1 className="text-5xl font-bold tracking-tight drop-shadow-lg">
-                        {formData.name || "Your Name"}
-                    </h1>
-                    <p className="text-xl font-medium text-white/90 tracking-wide drop-shadow-md uppercase">
-                        {formData.field || "Software Engineer"}
-                    </p>
+                <div className={`space-y-2 ${formData.layout === 'modern' ? 'flex-1' : 'w-full'}`}>
+                    <input
+                        type="text"
+                        value={formData.name}
+                        onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                        placeholder="Your Name"
+                        className={`text-5xl font-bold tracking-tight drop-shadow-lg bg-transparent border-none w-full focus:outline-none focus:ring-0 placeholder-white/50 ${formData.layout === 'modern' ? 'text-left' : 'text-center'}`}
+                    />
+                    <input
+                        type="text"
+                        value={formData.field}
+                        onChange={(e) => setFormData(prev => ({ ...prev, field: e.target.value }))}
+                        placeholder="Software Engineer"
+                        className={`text-xl font-medium text-white/90 tracking-wide drop-shadow-md uppercase bg-transparent border-none w-full focus:outline-none focus:ring-0 placeholder-white/50 ${formData.layout === 'modern' ? 'text-left' : 'text-center'}`}
+                    />
+
+                    {/* Socials - Moved here for Modern Layout */}
+                    {formData.layout === 'modern' && (
+                        <div className="flex items-center gap-6 mt-4">
+                            {formData.twitter && (
+                                <div className="flex items-center gap-2 text-white/90 drop-shadow-md">
+                                    <Twitter size={20} fill="currentColor" className="text-sky-400" />
+                                    <span className="font-medium">@{formData.twitter.replace('@', '')}</span>
+                                </div>
+                            )}
+
+                            {formData.github && (
+                                <div className="flex items-center gap-2 text-white/90 drop-shadow-md">
+                                    <Github size={20} fill="currentColor" />
+                                    <span className="font-medium">{formData.github}</span>
+                                </div>
+                            )}
+                        </div>
+                    )}
                 </div>
 
                 {/* Tech Stack */}
                 {selectedTech.length > 0 && (
-                    <div className="flex items-center gap-4 bg-black/30 backdrop-blur-md px-6 py-3 rounded-full border border-white/10 shadow-lg mt-2">
-                        {selectedTech.map(techName => {
-                            const tech = availableLanguages.find(t => t.name === techName);
-                            return tech ? (
-                                <img
-                                    key={techName}
-                                    src={tech.icon}
-                                    alt={techName}
-                                    className="w-8 h-8 drop-shadow-md hover:scale-110 transition-transform duration-200"
-                                />
-                            ) : null;
-                        })}
+                    <div className={`${formData.layout === 'modern' ? 'flex flex-col items-end justify-center' : 'flex items-center justify-center'} gap-4`}>
+                        <div className={`flex ${formData.layout === 'modern' ? 'flex' : 'flex-row'} items-center gap-4 bg-black/30 backdrop-blur-md px-6 py-3 rounded-3xl border border-white/10 shadow-lg mt-2`}>
+                            {selectedTech.map(techName => {
+                                const tech = availableLanguages.find(t => t.name === techName);
+                                return tech ? (
+                                    <img
+                                        key={techName}
+                                        src={tech.icon}
+                                        alt={techName}
+                                        className="w-8 h-8 drop-shadow-md hover:scale-110 transition-transform duration-200"
+                                    />
+                                ) : null;
+                            })}
+                        </div>
                     </div>
                 )}
 
-                {/* Socials */}
-                <div className="flex items-center gap-6 mt-2">
-                    {formData.twitter && (
-                        <div className="flex items-center gap-2 text-white/90 drop-shadow-md">
-                            <Twitter size={20} fill="currentColor" className="text-sky-400" />
-                            <span className="font-medium">@{formData.twitter.replace('@', '')}</span>
-                        </div>
-                    )}
+                {/* Socials - Standard Layout */}
+                {formData.layout !== 'modern' && (
+                    <div className="flex items-center gap-6 mt-2">
+                        {formData.twitter && (
+                            <div className="flex items-center gap-2 text-white/90 drop-shadow-md">
+                                <Twitter size={20} fill="currentColor" className="text-sky-400" />
+                                <span className="font-medium">@{formData.twitter.replace('@', '')}</span>
+                            </div>
+                        )}
 
-                    {formData.github && (
-                        <div className="flex items-center gap-2 text-white/90 drop-shadow-md">
-                            <Github size={20} fill="currentColor" />
-                            <span className="font-medium">{formData.github}</span>
-                        </div>
-                    )}
-                </div>
+                        {formData.github && (
+                            <div className="flex items-center gap-2 text-white/90 drop-shadow-md">
+                                <Github size={20} fill="currentColor" />
+                                <span className="font-medium">{formData.github}</span>
+                            </div>
+                        )}
+                    </div>
+                )}
             </div>
 
             {/* Watermark (Optional) */}

@@ -3,6 +3,8 @@ import Header from './Header';
 import SlidesPanel from './SlidesPanel';
 import MobileBottomNav from './MobileBottomNav';
 import { X } from 'lucide-react';
+import { downloadImage } from '../../../../utils/downloadImage';
+import MobileWarningModal from '../../../../components/ui/MobileWarningModal';
 
 const EditorLayout = ({
     sidebar,
@@ -18,8 +20,22 @@ const EditorLayout = ({
 }) => {
     const [mobileActivePanel, setMobileActivePanel] = React.useState(null);
 
+    const handleExport = async () => {
+        if (!bannerRef || !bannerRef.current) {
+            alert("Could not find banner element to export.");
+            return;
+        }
+        try {
+            await downloadImage(bannerRef.current, 'png', 2);
+        } catch (error) {
+            console.error("Export failed:", error);
+            alert("Failed to export image.");
+        }
+    };
+
     return (
         <div className="flex flex-col h-screen bg-gray-50 text-gray-900 font-sans">
+            <MobileWarningModal />
             {/* Top Navigation */}
             <Header onThemeSelect={onThemeSelect} bannerRef={bannerRef} />
 
@@ -56,7 +72,7 @@ const EditorLayout = ({
                 onOpenTools={() => setMobileActivePanel('tools')}
                 onOpenLayers={() => setMobileActivePanel('layers')}
                 onOpenSettings={() => setMobileActivePanel('properties')}
-                onExport={() => alert('Export on mobile coming soon!')}
+                onExport={handleExport}
             />
 
             {/* Mobile Drawers */}
@@ -69,7 +85,9 @@ const EditorLayout = ({
                         </button>
                     </div>
                     <div className="flex-1 overflow-y-auto">
-                        {mobileActivePanel === 'tools' && sidebar}
+                        {mobileActivePanel === 'tools' && React.cloneElement(sidebar, {
+                            onToolSelect: () => setMobileActivePanel('properties')
+                        })}
                         {mobileActivePanel === 'properties' && properties}
                         {mobileActivePanel === 'layers' && <div className="p-4 text-center text-gray-500">Layers coming soon</div>}
                     </div>

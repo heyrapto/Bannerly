@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Type, Image, Code, User, Shapes, BookOpen, MessageCircle, HelpCircle, Loader2, Waves, LayoutTemplate } from 'lucide-react';
 
-const Sidebar = ({ activeTool, setActiveTool }) => {
+const Sidebar = ({ activeTool, setActiveTool, onToolSelect }) => {
     const [activeTab, setActiveTab] = useState('elements');
 
     const topTools = [
@@ -22,7 +22,7 @@ const Sidebar = ({ activeTool, setActiveTool }) => {
     return (
         <div className="flex flex-col h-full">
             {/* Top Tool Selector Grid */}
-            <div className="p-4 pb-2">
+            {/* <div className="p-4 pb-2">
                 <div className="bg-white rounded-2xl p-2 shadow-sm border border-gray-300">
                     <div className="grid grid-cols-3 divide-x divide-y divide-gray-300 h-fit">
                         {topTools.map((tool, index) => (
@@ -38,7 +38,7 @@ const Sidebar = ({ activeTool, setActiveTool }) => {
                         ))}
                     </div>
                 </div>
-            </div>
+            </div> */}
 
             {/* Tabs */}
             <div className="px-4 mt-2">
@@ -76,14 +76,14 @@ const Sidebar = ({ activeTool, setActiveTool }) => {
             {/* Content Area */}
             <div className="flex-1 mx-4 mb-4 bg-white border border-gray-300 border-t-0 rounded-b-xl overflow-hidden flex flex-col">
                 {/* Search/Filter Bar */}
-                <div className="flex items-center justify-between px-3 py-2 border-b border-gray-100">
+                {/* <div className="flex items-center justify-between px-3 py-2 border-b border-gray-100">
                     <div className="w-8 h-8 flex items-center justify-center text-blue-500 border border-blue-100 rounded-lg bg-blue-50">
                         <Loader2 size={16} className="animate-spin-slow" />
                     </div>
                     <button className="text-gray-400 hover:text-gray-600">
                         <HelpCircle size={16} />
                     </button>
-                </div>
+                </div> */}
 
                 {/* Items List */}
                 <div className="flex-1 overflow-y-auto py-2">
@@ -97,7 +97,10 @@ const Sidebar = ({ activeTool, setActiveTool }) => {
                                 return (
                                     <button
                                         key={item.id}
-                                        onClick={() => setActiveTool(item.id === 'code-editor' ? 'tech' : item.id === 'background' ? 'theme' : 'profile')}
+                                        onClick={() => {
+                                            setActiveTool(item.id === 'code-editor' ? 'tech' : item.id === 'background' ? 'theme' : 'profile');
+                                            if (onToolSelect) onToolSelect();
+                                        }}
                                         className={`w-full flex items-center gap-3 px-4 py-2 text-sm font-medium transition-colors relative
                                             ${isActive
                                                 ? 'bg-blue-50 text-gray-900'

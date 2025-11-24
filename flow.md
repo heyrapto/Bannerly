@@ -1,1 +1,2 @@
-we also need the sign in modal that allows users to authenticate using google auth both authentication isn't compulsory, we can make it pop up when a user clicks on "Upgrade" from the editor header.
+In the dashboard, we can have settings, manage subsriptions, leaderboards, templates.
+There could also be a place that features top creators that use Bannerly and top banners created this week/month/day in the dashboard.
