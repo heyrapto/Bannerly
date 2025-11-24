@@ -34,12 +34,6 @@ const Editor = () => {
         return () => clearTimeout(timer);
     }, []);
 
-    // Legacy state for tech stack (global for now, or per slide? Assuming per slide for better UX, but keeping simple first)
-    // Actually, tech stack should probably be per slide too if we want them to be different.
-    // For now, let's keep tech stack global to avoid too much complexity, OR move it into slide data.
-    // The prompt implies "manage multiple banner slides", so likely they are independent.
-    // Let's keep selectedTech separate for now but maybe we should merge it into slide data later.
-    // For this refactor, I will keep selectedTech global to minimize breakage, but `formData` is definitely per slide.
     const [selectedTech, setSelectedTech] = useLocalStorage("selectedTech", []);
     const [activeTool, setActiveTool] = useState('profile');
     const bannerRef = React.useRef(null);

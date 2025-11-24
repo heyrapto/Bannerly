@@ -12,7 +12,7 @@ const Canvas = ({ children, bannerRef }) => {
     return (
         <div className="flex-1 relative bg-gray-100 overflow-hidden flex flex-col">
             {/* Canvas Area */}
-            <div className="flex-1 flex items-center justify-center p-8 overflow-auto">
+            <div className="flex-1 flex items-center justify-center p-4 md:p-8 overflow-auto">
                 <div
                     ref={bannerRef}
                     className="relative shadow-2xl shadow-gray-300/50 transition-all duration-300 hover:shadow-3xl origin-center"
@@ -23,7 +23,7 @@ const Canvas = ({ children, bannerRef }) => {
             </div>
 
             {/* Zoom Controls (Bottom Right) */}
-            <div className="absolute bottom-6 right-6 flex items-center gap-2 bg-white px-3 py-1.5 rounded-lg shadow-lg border border-gray-200 z-10">
+            <div className="absolute bottom-20 md:bottom-6 right-4 md:right-6 flex items-center gap-2 bg-white px-3 py-1.5 rounded-lg shadow-lg border border-gray-200 z-10 scale-90 md:scale-100 origin-bottom-right">
                 <button
                     onClick={handleZoomOut}
                     className="p-1 text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded"

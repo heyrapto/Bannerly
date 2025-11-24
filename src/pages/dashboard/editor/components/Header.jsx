@@ -5,11 +5,16 @@ import { PRESET_THEMES } from '../constants';
 import { downloadImage } from '../../../../utils/downloadImage';
 import ShortcutsModal from './ShortcutsModal';
 import ShareModal from './ShareModal';
+import ShareModal from './ShareModal';
+import SignInModal from '../../../../../components/auth/SignInModal';
+import { useAuth } from '../../../../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 const Header = ({ onThemeSelect, bannerRef }) => {
     const [isShortcutsOpen, setIsShortcutsOpen] = useState(false);
     const [isShareOpen, setIsShareOpen] = useState(false);
+    const [isSignInOpen, setIsSignInOpen] = useState(false);
+    const { user, logout } = useAuth();
     const navigate = useNavigate();
 
     const handleExport = async (scale) => {
@@ -47,10 +52,10 @@ const Header = ({ onThemeSelect, bannerRef }) => {
                     <div className="w-8 h-8 bg-gray-900 rounded-lg flex items-center justify-center text-white font-mono font-bold">
                         {`<>`}
                     </div>
-                    <span className="font-bold text-gray-900 text-lg">bannerly</span>
+                    <span className="font-bold text-gray-900 text-lg hidden md:block">Bannerly</span>
                 </div>
 
-                <div className="flex items-center gap-1 bg-white border border-gray-200 rounded-lg p-1">
+                <div className="hidden md:flex items-center gap-1 bg-white border border-gray-200 rounded-lg p-1">
                     <button className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-md transition-colors" onClick={() => navigate("/dashboard")}>
                         <div className="w-5 h-5 bg-purple-100 text-purple-600 rounded flex items-center justify-center">
                             <LayoutDashboard size={14} />
@@ -109,7 +114,7 @@ const Header = ({ onThemeSelect, bannerRef }) => {
             {/* Center: Actions */}
             <div className="flex items-center gap-3">
                 {/* Export Dropdown */}
-                <Menu as="div" className="relative">
+                <Menu as="div" className="relative hidden md:block">
                     <Menu.Button className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors shadow-sm">
                         <Download size={16} />
                         Export
@@ -182,9 +187,9 @@ const Header = ({ onThemeSelect, bannerRef }) => {
                     className="flex items-center gap-2 px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white text-sm font-medium rounded-lg transition-colors shadow-sm"
                 >
                     <Share2 size={16} />
-                    Share
+                    <span className="hidden md:inline">Share</span>
                 </button>
-                <button className="flex items-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white text-sm font-medium rounded-lg transition-colors shadow-sm">
+                <button className="hidden md:flex items-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white text-sm font-medium rounded-lg transition-colors shadow-sm">
                     <MonitorPlay size={16} />
                     Present
                 </button>
@@ -192,28 +197,42 @@ const Header = ({ onThemeSelect, bannerRef }) => {
 
             {/* Right: User & Upgrade */}
             < div className="flex items-center gap-4" >
-                <button className="px-4 py-2 bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white text-sm font-medium rounded-lg transition-all shadow-sm flex items-center gap-1">
-                    <span className="text-yellow-300">✨</span> Upgrade
-                </button>
+                {!user ? (
+                    <button
+                        onClick={() => setIsSignInOpen(true)}
+                        className="hidden md:flex px-4 py-2 bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white text-sm font-medium rounded-lg transition-all shadow-sm items-center gap-1"
+                    >
+                        <span className="text-yellow-300">✨</span> Upgrade
+                    </button>
+                ) : (
+                    <div className="hidden md:flex items-center gap-2 px-3 py-1.5 bg-purple-50 text-purple-700 rounded-lg text-sm font-medium border border-purple-100">
+                        <span className="text-yellow-500">★</span> Pro Plan
+                    </div>
+                )}
 
-                <div className="h-8 w-px bg-gray-200"></div>
+                <div className="hidden md:block h-8 w-px bg-gray-200"></div>
 
                 <button
                     onClick={() => setIsShortcutsOpen(true)}
-                    className="flex items-center gap-2 px-3 py-1.5 border border-gray-200 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+                    className="hidden md:flex items-center gap-2 px-3 py-1.5 border border-gray-200 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
                 >
                     <Keyboard size={16} />
                     Shortcuts
                 </button>
 
-                <button className="w-9 h-9 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-200 transition-colors">
-                    <User size={18} />
+                <button className="w-9 h-9 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-200 transition-colors overflow-hidden">
+                    {user ? (
+                        <img src={user.avatar} alt={user.name} className="w-full h-full object-cover" />
+                    ) : (
+                        <User size={18} />
+                    )}
                 </button>
             </div >
 
             {/* Modals */}
             <ShortcutsModal isOpen={isShortcutsOpen} onClose={() => setIsShortcutsOpen(false)} />
             <ShareModal isOpen={isShareOpen} onClose={() => setIsShareOpen(false)} />
+            <SignInModal isOpen={isSignInOpen} onClose={() => setIsSignInOpen(false)} />
         </header >
     );
 };

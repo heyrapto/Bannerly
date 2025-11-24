@@ -1,11 +1,28 @@
-import Navbar from "../../components/layout/Navbar"
+import React, { useState } from 'react';
+import DashboardLayout from './components/DashboardLayout';
+import Snaps from './views/Snaps';
+import Templates from './views/Templates';
+import Leaderboard from './views/Leaderboard';
+import Settings from './views/Settings';
 
 const Dashboard = () => {
-  return (
-    <div>
-      <Navbar btnText={"Editor"} href={"/editor"} isDashboard />
-    </div>
-  )
-}
+  const [activeView, setActiveView] = useState('snaps');
 
-export default Dashboard
+  const renderView = () => {
+    switch (activeView) {
+      case 'snaps': return <Snaps />;
+      case 'templates': return <Templates />;
+      case 'leaderboard': return <Leaderboard />;
+      case 'settings': return <Settings />;
+      default: return <Snaps />;
+    }
+  };
+
+  return (
+    <DashboardLayout activeView={activeView} setActiveView={setActiveView}>
+      {renderView()}
+    </DashboardLayout>
+  );
+};
+
+export default Dashboard;

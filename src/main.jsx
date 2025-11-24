@@ -7,18 +7,21 @@ import NotFound from './pages/NotFound.jsx';
 import SignIn from './pages/SignIn.jsx';
 import Dashboard from './pages/dashboard/page.jsx';
 import Editor from './pages/dashboard/editor/page.jsx';
+import { AuthProvider } from './context/AuthContext';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Router>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/sign-in" element={<SignIn />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/editor" element={<Editor />} />
-        {/* 404 */}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/editor" element={<Editor />} />
+          {/* 404 */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Router>
+    </AuthProvider>
   </StrictMode>,
 )
