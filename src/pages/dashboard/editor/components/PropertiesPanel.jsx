@@ -9,6 +9,8 @@ import { uploadImage } from '../../../../utils/uploadImage';
 import AIChat from './AIChat';
 import { useAuth } from '../../../../context/AuthContext';
 import { Lock } from 'lucide-react';
+import ColorPickerPopover from './ColorPickerPopover';
+import MediaLibraryModal from './MediaLibraryModal';
 
 const PropertiesPanel = ({
     activeTool,
@@ -22,6 +24,8 @@ const PropertiesPanel = ({
     const [searchTerm, setSearchTerm] = useState("");
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [isUploading, setIsUploading] = useState(false);
+    const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
+    const [isMediaLibraryOpen, setIsMediaLibraryOpen] = useState(false);
     const dropdownRef = useRef(null);
     const fileInputRef = useRef(null);
     const { user } = useAuth();
@@ -412,52 +416,71 @@ const PropertiesPanel = ({
                 <div>
                     <label className="block text-gray-900 font-medium mb-3">Fill</label>
 
-                    {/* Color Picker */}
-                    <div className="flex items-center gap-3 mb-3">
-                        <div className="p-2 bg-white border border-gray-200 rounded-lg text-gray-500">
-                            <Edit3 size={18} />
+                    {/* Color Picker Trigger */}
+                    <div className="relative mb-3">
+                        <div className="flex items-center gap-3">
+                            <div className="p-2 bg-white border border-gray-200 rounded-lg text-gray-500">
+                                <Edit3 size={18} />
+                            </div>
+                            <button
+                                onClick={() => setIsColorPickerOpen(!isColorPickerOpen)}
+                                className="flex-1 h-10 rounded-lg border border-gray-200 overflow-hidden cursor-pointer relative group hover:ring-2 hover:ring-blue-500 transition-all"
+                            >
+                                <div className="absolute inset-0" style={{ background: formData.rgbabackground.includes('url') ? 'linear-gradient(to right, #facc15, #f97316)' : formData.rgbabackground }}></div>
+                            </button>
+                            <button
+                                onClick={() => handleThemeSelect('transparent')}
+                                className="p-2 hover:bg-gray-100 rounded-lg text-gray-400"
+                            >
+                                <X size={18} />
+                            </button>
                         </div>
-                        <div className="flex-1 h-10 rounded-lg border border-gray-200 overflow-hidden cursor-pointer relative group">
-                            <div className="absolute inset-0" style={{ background: formData.rgbabackground.includes('url') ? 'linear-gradient(to right, #facc15, #f97316)' : formData.rgbabackground }}></div>
-                        </div>
-                        <button className="p-2 hover:bg-gray-100 rounded-lg text-gray-400">
-                            <X size={18} />
-                        </button>
+
+                        {/* Color Picker Popover */}
+                        {isColorPickerOpen && (
+                            <div className="absolute top-12 left-0 z-50">
+                                <div className="fixed inset-0 z-40" onClick={() => setIsColorPickerOpen(false)} />
+                                <ColorPickerPopover
+                                    color={formData.rgbabackground}
+                                    onChange={(newColor) => handleThemeSelect(newColor)}
+                                    onClose={() => setIsColorPickerOpen(false)}
+                                />
+                            </div>
+                        )}
                     </div>
 
-                    {/* Image/Gradient Picker */}
-                    <div className="flex items-center gap-3">
-                        <div className="p-2 bg-white border border-gray-200 rounded-lg text-gray-500">
-                            <ImageIcon size={18} />
+                    {/* Media Library Trigger */}
+                    <button
+                        onClick={() => setIsMediaLibraryOpen(true)}
+                        className="w-full py-3 bg-white border border-gray-200 hover:border-blue-500 hover:text-blue-600 text-gray-700 font-medium rounded-xl flex items-center justify-center gap-2 transition-all shadow-sm group"
+                    >
+                        <div className="p-1 bg-gray-100 group-hover:bg-blue-50 rounded text-gray-500 group-hover:text-blue-600 transition-colors">
+                            <ImageIcon size={16} />
                         </div>
-                        <div className="flex-1 grid grid-cols-6 gap-1 h-10">
+                        Open Media Library
+                    </button>
+
+                    {/* Quick Presets (Mini) */}
+                    <div className="mt-4">
+                        <label className="text-xs font-medium text-gray-500 mb-2 block uppercase tracking-wider">Quick Presets</label>
+                        <div className="grid grid-cols-6 gap-2">
                             {PRESET_THEMES.slice(0, 6).map(theme => (
                                 <button
                                     key={theme.id}
                                     onClick={() => handleThemeSelect(theme.value)}
-                                    className={`rounded overflow-hidden border transition-all ${formData.rgbabackground === theme.value ? 'border-blue-500 ring-1 ring-blue-500' : 'border-transparent'} `}
+                                    className={`aspect-square rounded-lg overflow-hidden border transition-all hover:scale-105 ${formData.rgbabackground === theme.value ? 'border-blue-500 ring-2 ring-blue-500/20' : 'border-transparent'} `}
                                 >
                                     <div className="w-full h-full" style={{ background: theme.value }} />
                                 </button>
                             ))}
                         </div>
-                        <button className="p-2 hover:bg-gray-100 rounded-lg text-gray-400">
-                            <X size={18} />
-                        </button>
                     </div>
 
-                    <button
-                        onClick={() => fileInputRef.current?.click()}
-                        className="mt-3 w-full py-2 border border-dashed border-gray-300 rounded-lg text-gray-500 text-xs hover:bg-gray-50 transition-colors"
-                    >
-                        Upload Custom Image
-                    </button>
-                    <input
-                        ref={fileInputRef}
-                        type="file"
-                        accept="image/*"
-                        onChange={handleImageUpload}
-                        className="hidden"
+                    {/* Media Library Modal */}
+                    <MediaLibraryModal
+                        isOpen={isMediaLibraryOpen}
+                        onClose={() => setIsMediaLibraryOpen(false)}
+                        onSelect={(url) => handleThemeSelect(url)}
                     />
                 </div>
             </div>
