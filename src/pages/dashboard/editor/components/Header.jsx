@@ -5,10 +5,12 @@ import { PRESET_THEMES } from '../constants';
 import { downloadImage } from '../../../../utils/downloadImage';
 import ShortcutsModal from './ShortcutsModal';
 import ShareModal from './ShareModal';
+import { useNavigate } from 'react-router-dom';
 
 const Header = ({ onThemeSelect, bannerRef }) => {
     const [isShortcutsOpen, setIsShortcutsOpen] = useState(false);
     const [isShareOpen, setIsShareOpen] = useState(false);
+    const navigate = useNavigate();
 
     const handleExport = async (scale) => {
         if (!bannerRef || !bannerRef.current) {
@@ -41,7 +43,7 @@ const Header = ({ onThemeSelect, bannerRef }) => {
         <header className="h-16 flex items-center justify-between px-4 z-40 relative">
             {/* Left: Logo & Navigation */}
             <div className="flex items-center gap-6">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2" onClick={() => navigate("/")}>
                     <div className="w-8 h-8 bg-gray-900 rounded-lg flex items-center justify-center text-white font-mono font-bold">
                         {`<>`}
                     </div>
@@ -49,7 +51,7 @@ const Header = ({ onThemeSelect, bannerRef }) => {
                 </div>
 
                 <div className="flex items-center gap-1 bg-white border border-gray-200 rounded-lg p-1">
-                    <button className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-md transition-colors">
+                    <button className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-md transition-colors" onClick={() => navigate("/dashboard")}>
                         <div className="w-5 h-5 bg-purple-100 text-purple-600 rounded flex items-center justify-center">
                             <LayoutDashboard size={14} />
                         </div>
