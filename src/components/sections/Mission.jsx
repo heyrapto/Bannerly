@@ -22,7 +22,7 @@ const MissionSection = () => {
                 </div>
 
                 <div ref={textRef} className="text-center max-w-5xl mx-auto">
-                    <p className="text-5xl md:text-6xl lg:text-7xl font-medium leading-tight">
+                    <p className="text-3xl md:text-6xl lg:text-7xl font-medium leading-tight">
                         {parts.map((part, index) => {
                             if (/[\u{1F300}-\u{1F9FF}]/u.test(part)) {
                                 return (

@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import Button from "../shared/Button";
 import { Icons } from "../ui/Icons";
 
@@ -10,6 +11,7 @@ const FloatingIcon = ({ children, className }) => (
 );
 
 const HeroSection = () => {
+    const navigate = useNavigate();
     return (
         <section className="relative flex flex-col items-center justify-start pt-20 sm:pt-24 pb-32 overflow-hidden max-w-[1440px] mx-auto w-full">
             {/* Icons */}
@@ -63,11 +65,11 @@ const HeroSection = () => {
                 Drop Zone
                 </h2>
 
-                <h1 className="text-3xl sm:text-3xl lg:text-4xl font-light mt-3 w-[600px] lg:leading-[40px]">
+                <h1 className="text-3xl sm:text-3xl lg:text-4xl font-light mt-3 lg:w-[600px] w-full lg:leading-[40px]">
                 Create stunning, personalized banners with built-in tools and powerful customization options.
                 </h1>
 
-                <Button className="mt-6" size="lg">
+                <Button className="mt-6" size="lg" onClick={() => navigate('/dashboard')}>
                     Start Creating
                 </Button>
 

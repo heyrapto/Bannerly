@@ -1,6 +1,5 @@
 import { FaReact } from "react-icons/fa";
 import { IoLogoJavascript } from "react-icons/io5";
-import { SiPhp } from "react-icons/si";
 import { FaGolang } from "react-icons/fa6";
 
 const FeatureCard = ({ className = "", children }) => (
@@ -44,15 +43,15 @@ const FeaturesSection = () => {
         id: 2,
         className: "bg-[#EB4C70] text-left",
         content: (
-          <div className="md:h-full h-[300px]">
+          <div className="md:h-full h-[400px]">
             <div className="relative overflow-hidden">
               <h2 className="text-3xl font-medium mb-4 text-white/90">Quick Generation</h2>
               <p className="text-sm leading-relaxed text-white/90 max-w-xs">
               Create professional banners in seconds with our streamlined design process and templates.
               </p>
             </div>
-            <div className="w-full flex justify-end">
-              <div className="w-[400px] h-[200px] bg-gray-300 rounded-2xl flex items-center justify-center -bottom-16 -right-20 absolute">
+            <div className="w-full flex justify-end lg:mt-0 mt-10">
+              <div className="w-[400px] h-[200px] bg-gray-300 rounded-2xl flex items-center justify-center -bottom-16 -right-20 lg:absolute static">
                 <span className="text-black text-4xl"></span>
               </div>
             </div>
@@ -70,7 +69,7 @@ const FeaturesSection = () => {
             Seamlessly connect your social profiles to import data and share your new banner with your network.
             </p>
             <div className="absolute right-0 bottom-5">
-                <img src="/images/socials.webp" className="w-[350px]" alt="" />
+                <img src="/images/socials.webp" className="lg:w-[350px] w-[200px]" alt="" />
             </div>
           </div>
         ),
