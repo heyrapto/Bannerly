@@ -51,7 +51,7 @@ const Header = ({ onThemeSelect, bannerRef }) => {
             <div className="flex items-center gap-6 cursor-pointer">
                 <div className="flex items-center" onClick={() => navigate("/")}>
                     <img src="/logo.svg" width={50} alt="" />
-                    <span className="font-bold text-neutral-700 text-lg hidden md:block">bannerly</span>
+                    <span className="font-bold text-neutral-700 text-lg hidden md:block">headerio</span>
                 </div>
 
                 <div className="hidden md:flex items-center gap-1 bg-white border border-gray-200 rounded-lg p-1">

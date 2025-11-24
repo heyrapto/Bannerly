@@ -1,4 +1,4 @@
-In the dashboard, we can have settings, manage subsriptions, leaderboards, templates.
+1. In the dashboard, we can have settings, manage subsriptions, leaderboards, templates.
 There could also be a place that features top creators that use Bannerly and top banners created this week/month/day in the dashboard.
 
 # Features to keep engagements

@@ -18,7 +18,7 @@ const MissionSection = () => {
         <section ref={sectionRef} className="w-screen bg-white">
             <div className="max-w-[1440px] mx-auto px-6 py-32">
                 <div className="text-center mb-16">
-                    <h3 className="text-lg font-medium text-neutral-800">Bannerly Manifesto</h3>
+                    <h3 className="text-lg font-medium text-neutral-800">Header.io Manifesto</h3>
                 </div>
 
                 <div ref={textRef} className="text-center max-w-5xl mx-auto">
@@ -34,7 +34,7 @@ const MissionSection = () => {
                                     </span>
                                 );
                             }
-                            
+
                             return part.split('').map((char, charIndex) => (
                                 <span
                                     key={`${index}-${charIndex}`}

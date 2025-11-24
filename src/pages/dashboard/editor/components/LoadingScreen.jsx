@@ -3,7 +3,7 @@ const LoadingScreen = () => {
         <div className="fixed inset-0 bg-white z-50 flex flex-col items-center justify-center">
             <div className="flex items-center gap-3 mb-8">
                 <img src="/logo.svg" width={100} alt="" />
-                <span className="font-bold text-neutral-700 text-lg hidden md:block -ml-6">Bannerly</span>
+                <span className="font-bold text-neutral-700 text-lg hidden md:block -ml-6">Header.io</span>
             </div>
 
 
