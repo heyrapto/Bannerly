@@ -87,61 +87,94 @@ const PropertiesPanel = ({
 
     const renderProfileParams = () => (
         <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
-            <div>
-                <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-lg font-bold text-gray-900">Watermark</h3>
-                    <div className="bg-green-100 p-1 rounded">
-                        <Layout size={16} className="text-green-600" />
+            {/* Watermark Section */}
+            <div className="space-y-6">
+                <div className="flex items-center justify-between">
+                    <h3 className="text-sm font-semibold text-gray-900">Profile Information</h3>
+                    <div className="flex items-center gap-2">
+                        <span className="text-xs text-gray-500">Visible</span>
+                        <button
+                            className="w-10 h-5 bg-blue-600 rounded-full relative transition-colors"
+                            onClick={() => {/* Toggle visibility logic if needed */ }}
+                        >
+                            <div className="absolute right-1 top-1 w-3 h-3 bg-white rounded-full shadow-sm"></div>
+                        </button>
                     </div>
                 </div>
 
                 <div className="space-y-4">
-                    <div>
-                        <label className="block text-gray-600 text-xs font-semibold mb-2">Full Name</label>
-                        <input
-                            type="text"
-                            name="name"
-                            value={formData.name}
-                            onChange={handleFormChange}
-                            placeholder="John Doe"
-                            className="w-full bg-gray-50 border border-gray-200 text-gray-900 text-sm rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent block p-2.5 transition-all"
-                        />
-                    </div>
-
-                    <div>
-                        <label className="block text-gray-600 text-xs font-semibold mb-2">Professional Field</label>
-                        <input
-                            type="text"
-                            name="field"
-                            value={formData.field}
-                            onChange={handleFormChange}
-                            placeholder="Frontend Developer"
-                            className="w-full bg-gray-50 border border-gray-200 text-gray-900 text-sm rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent block p-2.5 transition-all"
-                        />
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-3">
-                        <div>
-                            <label className="block text-gray-600 text-xs font-semibold mb-2">Twitter</label>
+                    {/* Name Input */}
+                    <div className="group">
+                        <label className="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wider">Full Name</label>
+                        <div className="relative flex items-center">
+                            <div className="absolute left-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
+                                <User size={16} />
+                            </div>
                             <input
                                 type="text"
-                                name="twitter"
-                                value={formData.twitter}
+                                name="name"
+                                value={formData.name}
                                 onChange={handleFormChange}
-                                placeholder="@johndoe"
-                                className="w-full bg-gray-50 border border-gray-200 text-gray-900 text-sm rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent block p-2.5 transition-all"
+                                placeholder="John Doe"
+                                className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
                             />
                         </div>
-                        <div>
-                            <label className="block text-gray-600 text-xs font-semibold mb-2">GitHub</label>
+                    </div>
+
+                    {/* Field Input */}
+                    <div className="group">
+                        <label className="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wider">Role / Title</label>
+                        <div className="relative flex items-center">
+                            <div className="absolute left-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
+                                <Briefcase size={16} />
+                            </div>
                             <input
                                 type="text"
-                                name="github"
-                                value={formData.github}
+                                name="field"
+                                value={formData.field}
                                 onChange={handleFormChange}
-                                placeholder="johndoe"
-                                className="w-full bg-gray-50 border border-gray-200 text-gray-900 text-sm rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent block p-2.5 transition-all"
+                                placeholder="Software Engineer"
+                                className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
                             />
+                        </div>
+                    </div>
+
+                    <div className="h-px bg-gray-100 my-4"></div>
+
+                    {/* Social Handles */}
+                    <div className="grid grid-cols-1 gap-4">
+                        <div className="group">
+                            <label className="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wider">Twitter</label>
+                            <div className="relative flex items-center">
+                                <div className="absolute left-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
+                                    <Twitter size={16} />
+                                </div>
+                                <input
+                                    type="text"
+                                    name="twitter"
+                                    value={formData.twitter}
+                                    onChange={handleFormChange}
+                                    placeholder="@username"
+                                    className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
+                                />
+                            </div>
+                        </div>
+
+                        <div className="group">
+                            <label className="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wider">GitHub</label>
+                            <div className="relative flex items-center">
+                                <div className="absolute left-3 text-gray-400 group-focus-within:text-blue-500 transition-colors">
+                                    <Github size={16} />
+                                </div>
+                                <input
+                                    type="text"
+                                    name="github"
+                                    value={formData.github}
+                                    onChange={handleFormChange}
+                                    placeholder="username"
+                                    className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -1,14 +1,38 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { LayoutDashboard, Palette, Download, Share2, MonitorPlay, Keyboard, User, ChevronDown, Image as ImageIcon, Copy, FileText, Video, Lock } from 'lucide-react';
 import { Menu, Transition, Popover } from '@headlessui/react';
 import { PRESET_THEMES } from '../constants';
 import { downloadImage } from '../../../../utils/downloadImage';
+import ShortcutsModal from './ShortcutsModal';
 
 const Header = ({ onThemeSelect, bannerRef }) => {
-    const handleExport = (scale) => {
-        if (bannerRef && bannerRef.current) {
-            downloadImage(bannerRef.current, 'png', scale);
+    const [isShortcutsOpen, setIsShortcutsOpen] = useState(false);
+
+    const handleExport = async (scale) => {
+        if (!bannerRef || !bannerRef.current) {
+            console.error("Export failed: Banner element not found (ref is null)");
+            alert("Could not find banner element to export. Please try again.");
+            return;
         }
+
+        try {
+            console.log(`Starting export at ${scale}x scale...`);
+            await downloadImage(bannerRef.current, 'png', scale);
+            console.log("Export completed successfully");
+        } catch (error) {
+            console.error("Export failed:", error);
+            alert("Failed to export image. See console for details.");
+        }
+    };
+
+    const handleShare = () => {
+        // Mock share functionality
+        const url = window.location.href;
+        navigator.clipboard.writeText(url).then(() => {
+            alert("Link copied to clipboard!");
+        }).catch(() => {
+            alert("Failed to copy link.");
+        });
     };
 
     return (
@@ -116,7 +140,7 @@ const Header = ({ onThemeSelect, bannerRef }) => {
                                     {({ active }) => (
                                         <button className={`${active ? 'bg-gray-50' : ''} group flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm text-gray-700`}>
                                             <Copy size={16} className="text-gray-500" />
-                                            Clipboard
+                                            Copy to clipboard
                                         </button>
                                     )}
                                 </Menu.Item>
@@ -124,36 +148,23 @@ const Header = ({ onThemeSelect, bannerRef }) => {
                             <div className="p-1">
                                 <Menu.Item>
                                     {({ active }) => (
-                                        <button className={`${active ? 'bg-gray-50' : ''} group flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm text-gray-700`}>
-                                            <div className="flex items-center gap-3">
-                                                <ImageIcon size={16} className="text-gray-500" />
-                                                Download All Slides
-                                            </div>
-                                            <Lock size={14} className="text-purple-400" />
-                                        </button>
-                                    )}
-                                </Menu.Item>
-                                <Menu.Item>
-                                    {({ active }) => (
-                                        <button className={`${active ? 'bg-gray-50' : ''} group flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm text-gray-700`}>
+                                        <button className={`${active ? 'bg-gray-50' : ''} group flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm text-gray-700 opacity-50 cursor-not-allowed`}>
                                             <div className="flex items-center gap-3">
                                                 <FileText size={16} className="text-gray-500" />
                                                 Download PDF
                                             </div>
-                                            <Lock size={14} className="text-purple-400" />
+                                            <Lock size={12} className="text-gray-400" />
                                         </button>
                                     )}
                                 </Menu.Item>
-                            </div>
-                            <div className="p-1">
                                 <Menu.Item>
                                     {({ active }) => (
-                                        <button className={`${active ? 'bg-gray-50' : ''} group flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm text-gray-700`}>
+                                        <button className={`${active ? 'bg-gray-50' : ''} group flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm text-gray-700 opacity-50 cursor-not-allowed`}>
                                             <div className="flex items-center gap-3">
                                                 <Video size={16} className="text-gray-500" />
                                                 Export Video
                                             </div>
-                                            <span className="bg-orange-100 text-orange-700 text-[10px] font-bold px-1.5 py-0.5 rounded">Experimental</span>
+                                            <span className="text-[10px] font-bold bg-purple-100 text-purple-600 px-1.5 py-0.5 rounded">BETA</span>
                                         </button>
                                     )}
                                 </Menu.Item>
@@ -170,10 +181,10 @@ const Header = ({ onThemeSelect, bannerRef }) => {
                     <MonitorPlay size={16} />
                     Present
                 </button>
-            </div>
+            </div >
 
             {/* Right: User & Upgrade */}
-            <div className="flex items-center gap-4">
+            < div className="flex items-center gap-4" >
                 <button className="px-4 py-2 bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white text-sm font-medium rounded-lg transition-all shadow-sm flex items-center gap-1">
                     <span className="text-yellow-300">✨</span> Upgrade
                 </button>
@@ -188,8 +199,8 @@ const Header = ({ onThemeSelect, bannerRef }) => {
                 <button className="w-9 h-9 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-200 transition-colors">
                     <User size={18} />
                 </button>
-            </div>
-        </header>
+            </div >
+        </header >
     );
 };
 
