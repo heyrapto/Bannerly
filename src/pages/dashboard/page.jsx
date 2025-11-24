@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
 import DashboardLayout from './components/DashboardLayout';
-import Snaps from './views/Snaps';
+import Projects from './views/Projects';
 import Templates from './views/Templates';
 import Leaderboard from './views/Leaderboard';
 import Settings from './views/Settings';
+import Tutorials from './views/Tutorials';
 
 const Dashboard = () => {
-  const [activeView, setActiveView] = useState('snaps');
+  const [activeView, setActiveView] = useState('projects');
 
   const renderView = () => {
     switch (activeView) {
-      case 'snaps': return <Snaps />;
+      case 'projects': return <Projects />;
+      case 'home': return <Projects />; // Reusing Projects for Home for now until Home view is built
       case 'templates': return <Templates />;
       case 'leaderboard': return <Leaderboard />;
+      case 'tutorials': return <Tutorials />;
       case 'settings': return <Settings />;
-      default: return <Snaps />;
+      default: return <Projects />;
     }
   };
 

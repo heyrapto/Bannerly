@@ -3,6 +3,16 @@ import { Twitter, Github, MapPin, Link as LinkIcon } from 'lucide-react';
 import { PATTERN_STYLES } from '../constants';
 
 const BannerCard = ({ formData, setFormData, selectedTech, availableLanguages }) => {
+    // Helper to get tech stack style
+    const getTechStackStyle = () => {
+        const style = formData.techStackStyle || 'glass'; // default to glass
+        switch (style) {
+            case 'none': return 'bg-transparent border-none shadow-none';
+            case 'solid-white': return 'bg-white text-gray-900 border-gray-200 shadow-lg';
+            case 'solid-black': return 'bg-black text-white border-white/10 shadow-lg';
+            case 'glass': default: return 'bg-black/30 backdrop-blur-md border-white/10 shadow-lg text-white';
+        }
+    };
     // Helper to get pattern style if background matches a preset
     // In a real app, we might store pattern info in formData directly
     const getBackgroundStyle = () => {
@@ -31,7 +41,7 @@ const BannerCard = ({ formData, setFormData, selectedTech, availableLanguages })
             <div className="absolute inset-0 bg-black/10 backdrop-blur-[1px]" />
 
             {/* Content Container */}
-            <div className={`relative z-10 flex ${formData.layout === 'modern' ? 'flex-row justify-between text-left px-16' : 'flex-col items-center text-center px-12'} gap-6 w-full`}>
+            <div className={`relative z-10 flex ${formData.layout === 'modern' ? 'flex-row justify-between text-left px-16 pb-10' : 'flex-col items-center text-center px-12'} gap-6 w-full`}>
 
                 {/* Main Info */}
                 <div className={`space-y-2 ${formData.layout === 'modern' ? 'flex-1' : 'w-full'}`}>
@@ -72,20 +82,46 @@ const BannerCard = ({ formData, setFormData, selectedTech, availableLanguages })
 
                 {/* Tech Stack */}
                 {selectedTech.length > 0 && (
-                    <div className={`${formData.layout === 'modern' ? 'flex flex-col items-end justify-center' : 'flex items-center justify-center'} gap-4`}>
-                        <div className={`flex ${formData.layout === 'modern' ? 'flex' : 'flex-row'} items-center gap-4 bg-black/30 backdrop-blur-md px-6 py-3 rounded-3xl border border-white/10 shadow-lg mt-2`}>
-                            {selectedTech.map(techName => {
-                                const tech = availableLanguages.find(t => t.name === techName);
-                                return tech ? (
-                                    <img
-                                        key={techName}
-                                        src={tech.icon}
-                                        alt={techName}
-                                        className="w-8 h-8 drop-shadow-md hover:scale-110 transition-transform duration-200"
-                                    />
-                                ) : null;
-                            })}
-                        </div>
+                    <div className={`${formData.layout === 'modern' ? 'absolute bottom-6 right-6 flex items-center gap-3' : 'flex items-center justify-center mt-2'}`}>
+                        {formData.layout === 'modern' && <span className="font-medium text-white/80">Stack:</span>}
+
+                        {formData.techStackIndividual ? (
+                            // Individual Items Styling
+                            <div className="flex items-center gap-3">
+                                {selectedTech.map(techName => {
+                                    const tech = availableLanguages.find(t => t.name === techName);
+                                    return tech ? (
+                                        <div
+                                            key={techName}
+                                            className={`p-2 rounded-xl border transition-all ${getTechStackStyle()}`}
+                                        >
+                                            <img
+                                                src={tech.icon}
+                                                alt={techName}
+                                                style={{ width: `${formData.iconSize || 32}px`, height: `${formData.iconSize || 32}px` }}
+                                                className="drop-shadow-md"
+                                            />
+                                        </div>
+                                    ) : null;
+                                })}
+                            </div>
+                        ) : (
+                            // Container Styling (Original)
+                            <div className={`flex items-center gap-4 px-6 py-3 rounded-2xl border transition-all ${getTechStackStyle()}`}>
+                                {selectedTech.map(techName => {
+                                    const tech = availableLanguages.find(t => t.name === techName);
+                                    return tech ? (
+                                        <img
+                                            key={techName}
+                                            src={tech.icon}
+                                            alt={techName}
+                                            style={{ width: `${formData.iconSize || 32}px`, height: `${formData.iconSize || 32}px` }}
+                                            className="drop-shadow-md hover:scale-110 transition-transform duration-200"
+                                        />
+                                    ) : null;
+                                })}
+                            </div>
+                        )}
                     </div>
                 )}
 

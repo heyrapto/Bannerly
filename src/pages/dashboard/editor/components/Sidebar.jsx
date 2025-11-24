@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import { Type, Image, Code, User, Shapes, BookOpen, MessageCircle, HelpCircle, Loader2, Waves, LayoutTemplate } from 'lucide-react';
+import { Type, Image, Code, User, Shapes, BookOpen, MessageCircle, HelpCircle, Loader2, Waves, LayoutTemplate, Sparkles } from 'lucide-react';
+import AIChat from './AIChat';
 
 const Sidebar = ({ activeTool, setActiveTool, onToolSelect }) => {
     const [activeTab, setActiveTab] = useState('elements');
 
     const topTools = [
         { id: 'code', icon: Code, label: 'Code' },
-        { id: 'text', icon: Type, label: 'Text' },
-        { id: 'image', icon: Image, label: 'Image' },
-        { id: 'user', icon: User, label: 'User' },
+        { id: 'profile', icon: User, label: 'Profile' },
+        { id: 'background', icon: Image, label: 'Background' },
+        { id: 'code-editor', icon: Code, label: 'Tech Stack' },
+        { id: 'ai-chat', icon: Sparkles, label: 'AI Assistant' },
         { id: 'shapes', icon: Shapes, label: 'Shapes' },
         { id: 'empty', icon: null, label: '' }, // Placeholder for grid alignment
     ];
@@ -98,7 +100,7 @@ const Sidebar = ({ activeTool, setActiveTool, onToolSelect }) => {
                                     <button
                                         key={item.id}
                                         onClick={() => {
-                                            setActiveTool(item.id === 'code-editor' ? 'tech' : item.id === 'background' ? 'theme' : 'profile');
+                                            setActiveTool(item.id === 'code-editor' ? 'tech' : item.id === 'background' ? 'theme' : item.id === 'ai-chat' ? 'ai' : 'profile');
                                             if (onToolSelect) onToolSelect();
                                         }}
                                         className={`w-full flex items-center gap-3 px-4 py-2 text-sm font-medium transition-colors relative
@@ -129,7 +131,10 @@ const Sidebar = ({ activeTool, setActiveTool, onToolSelect }) => {
 
             {/* Footer */}
             <div className="p-4 flex items-center justify-between mt-auto">
-                <button className="w-10 h-10 bg-white rounded-full shadow-sm border border-gray-300 flex items-center justify-center text-gray-600 hover:text-gray-900 transition-colors">
+                <button
+                    onClick={() => setActiveTool('ai')}
+                    className={`w-10 h-10 bg-white rounded-full shadow-sm border border-gray-300 flex items-center justify-center transition-colors ${activeTool === 'ai' ? 'text-blue-600 border-blue-500' : 'text-gray-600 hover:text-gray-900'}`}
+                >
                     <MessageCircle size={20} />
                 </button>
                 <button className="w-10 h-10 bg-white rounded-full shadow-sm border border-gray-200 flex items-center justify-center text-gray-600 hover:text-gray-900 transition-colors">

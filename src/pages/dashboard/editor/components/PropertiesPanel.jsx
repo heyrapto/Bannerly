@@ -6,6 +6,7 @@ import { TECH_STACK_CONFIG } from '../../../../config/techStack';
 import { MAX_STACK_SELECTIONS } from '../../../../constants';
 
 import { uploadImage } from '../../../../utils/uploadImage';
+import AIChat from './AIChat';
 
 const PropertiesPanel = ({
     activeTool,
@@ -13,7 +14,8 @@ const PropertiesPanel = ({
     setFormData,
     selectedTech,
     handleTechSelect,
-    handleTechRemove
+    handleTechRemove,
+    availableLanguages
 }) => {
     const [searchTerm, setSearchTerm] = useState("");
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -254,7 +256,64 @@ const PropertiesPanel = ({
                     )}
                 </div>
             </div>
-        </div>
+
+            {/* Tech Stack Customization */}
+            <div className="space-y-6 pt-6 border-t border-gray-100">
+                {/* Stack Style */}
+                <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Stack Style</label>
+                    <div className="grid grid-cols-4 gap-2">
+                        {[
+                            { id: 'glass', label: 'Glass', class: 'bg-gray-800 text-white' },
+                            { id: 'solid-white', label: 'White', class: 'bg-white border border-gray-200 text-gray-900' },
+                            { id: 'solid-black', label: 'Black', class: 'bg-black text-white' },
+                            { id: 'none', label: 'None', class: 'bg-gray-100 text-gray-500' },
+                        ].map(style => (
+                            <button
+                                key={style.id}
+                                onClick={() => handleFormChange({ target: { name: 'techStackStyle', value: style.id } })}
+                                className={`py-2 text-xs font-medium rounded-lg transition-all ${style.class} ${formData.techStackStyle === style.id ? 'ring-2 ring-blue-500 ring-offset-1' : 'opacity-70 hover:opacity-100'}`}
+                            >
+                                {style.label}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+
+            </div>
+
+            {/* Individual Background Toggle */}
+            <div className="flex items-center gap-2">
+                <input
+                    type="checkbox"
+                    id="techStackIndividual"
+                    checked={formData.techStackIndividual || false}
+                    onChange={(e) => handleFormChange({ target: { name: 'techStackIndividual', value: e.target.checked } })}
+                    className="w-4 h-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500"
+                />
+                <label htmlFor="techStackIndividual" className="text-xs text-gray-600 select-none cursor-pointer">
+                    Apply to individual items
+                </label>
+            </div>
+
+            {/* Icon Size */}
+            <div>
+                <div className="flex items-center justify-between mb-2">
+                    <label className="text-sm font-medium text-gray-700">Icon Size</label>
+                    <span className="text-xs text-gray-500">{formData.iconSize}px</span>
+                </div>
+                <input
+                    type="range"
+                    min="16"
+                    max="64"
+                    step="4"
+                    name="iconSize"
+                    value={formData.iconSize || 32}
+                    onChange={handleFormChange}
+                    className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+                />
+            </div>
+        </div >
     );
 
     const renderThemeParams = () => (
@@ -407,6 +466,16 @@ const PropertiesPanel = ({
             {activeTool === 'profile' && renderProfileParams()}
             {activeTool === 'tech' && renderTechParams()}
             {activeTool === 'theme' && renderThemeParams()}
+            {activeTool === 'ai' && (
+                <AIChat
+                    formData={formData}
+                    setFormData={setFormData}
+                    selectedTech={selectedTech}
+                    handleTechSelect={handleTechSelect}
+                    handleTechRemove={handleTechRemove}
+                    availableLanguages={availableLanguages}
+                />
+            )}
             {activeTool === 'export' && (
                 <div className="text-center py-10 text-gray-500">
                     <p>Export options coming soon!</p>

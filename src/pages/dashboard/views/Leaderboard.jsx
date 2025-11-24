@@ -58,17 +58,17 @@ const Leaderboard = () => {
 
                 {/* Stats & Trends */}
                 <div className="space-y-6">
-                    <div className="bg-gradient-to-br from-purple-600 to-blue-600 rounded-xl p-6 text-white shadow-lg">
+                    <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
                         <div className="flex items-center gap-3 mb-4">
-                            <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
-                                <TrendingUp size={24} />
+                            <div className="p-2 bg-purple-50 rounded-lg">
+                                <TrendingUp size={24} className="text-purple-600" />
                             </div>
                             <div>
-                                <div className="text-sm font-medium text-purple-100">Trending Now</div>
-                                <div className="text-xl font-bold">Gradient Styles</div>
+                                <div className="text-sm font-medium text-gray-500">Trending Now</div>
+                                <div className="text-xl font-bold text-gray-900">Gradient Styles</div>
                             </div>
                         </div>
-                        <p className="text-sm text-purple-100 opacity-90">
+                        <p className="text-sm text-gray-600">
                             Gradient backgrounds are seeing a 45% increase in usage this week.
                         </p>
                     </div>

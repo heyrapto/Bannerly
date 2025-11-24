@@ -2,14 +2,14 @@ import React from 'react';
 import { Plus, FolderPlus, MoreVertical, Home, ChevronDown, ArrowDown } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-const Snaps = () => {
+const Projects = () => {
     const navigate = useNavigate();
 
     return (
         <div className="space-y-8 animate-in fade-in duration-500">
             {/* Header */}
             <div className="flex items-center justify-between">
-                <h1 className="text-3xl font-bold text-gray-900">Your Snaps</h1>
+                <h1 className="text-3xl font-bold text-gray-900">Your Projects</h1>
                 <button
                     onClick={() => navigate('/editor')}
                     className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors shadow-sm"
@@ -65,7 +65,7 @@ const Snaps = () => {
                         {/* Arrow Annotation (Mock) */}
                         <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-48 text-center hidden group-hover:block animate-in fade-in slide-in-from-bottom-2">
                             <div className="text-sm font-medium text-gray-900 bg-white px-3 py-1 rounded-full shadow-lg border border-gray-100 mb-2">
-                                Start with opening your first snap! 😉
+                                Start with opening your first project! 😉
                             </div>
                             <svg className="w-6 h-6 mx-auto text-gray-400 transform rotate-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
@@ -73,7 +73,7 @@ const Snaps = () => {
                         </div>
                     </div>
                     <div className="h-1/4 p-3 flex items-center justify-between bg-white border-t border-gray-100">
-                        <span className="font-medium text-gray-900">Snap</span>
+                        <span className="font-medium text-gray-900">Project</span>
                         <button className="p-1 text-gray-400 hover:text-gray-600 hover:bg-gray-50 rounded">
                             <MoreVertical size={16} />
                         </button>
@@ -88,11 +88,11 @@ const Snaps = () => {
                     <div className="text-gray-400 group-hover:text-gray-600 transition-colors">
                         <Plus size={48} strokeWidth={1.5} />
                     </div>
-                    <span className="text-gray-500 font-medium">Add snap</span>
+                    <span className="text-gray-500 font-medium">Add project</span>
                 </button>
             </div>
         </div>
     );
 };
 
-export default Snaps;
+export default Projects;

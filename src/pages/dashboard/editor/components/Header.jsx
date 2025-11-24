@@ -189,7 +189,7 @@ const Header = ({ onThemeSelect, bannerRef }) => {
                     <span className="hidden md:inline">Share</span>
                 </button>
                 <button
-                    onClick={() => addToast("Presentation mode coming soon!", "info")}
+                    onClick={() => alert("Presentation mode coming soon!")}
                     className="hidden md:flex items-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white text-sm font-medium rounded-lg transition-colors shadow-sm"
                 >
                     <MonitorPlay size={16} />

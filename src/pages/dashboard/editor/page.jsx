@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from "react";
 import { useLocalStorage } from "../../../hooks/useLocalStorage";
+import { useKeyboardShortcuts } from "../../../hooks/useKeyboardShortcuts";
 import { TECH_STACK_CONFIG } from "../../../config/techStack";
 import { MAX_STACK_SELECTIONS } from "../../../constants";
 import EditorLayout from "./components/EditorLayout";
@@ -17,6 +18,9 @@ const initialFormState = {
     github: "",
     rgbabackground: "linear-gradient(to right, #4f46e5, #9333ea)",
     layout: "standard",
+    techStackStyle: "glass",
+    iconSize: 32,
+    techStackIndividual: false,
 };
 
 const Editor = () => {
@@ -104,6 +108,21 @@ const Editor = () => {
         setFormData(prev => ({ ...prev, rgbabackground: themeValue }));
     };
 
+    // Keyboard Shortcuts
+    useKeyboardShortcuts({
+        onSave: () => alert("Saved! (Mock)"),
+        onUndo: () => console.log("Undo triggered"),
+        onRedo: () => console.log("Redo triggered"),
+        onPresent: () => alert("Presentation mode coming soon!"),
+        onDelete: () => {
+            // Example: Delete selected tech if any (would need selection state)
+            // For now, maybe remove the last added tech?
+            if (selectedTech.length > 0) {
+                handleTechRemove(selectedTech[selectedTech.length - 1]);
+            }
+        }
+    });
+
     if (isLoading) {
         return <LoadingScreen />;
     }
@@ -141,6 +160,7 @@ const Editor = () => {
                     selectedTech={selectedTech}
                     handleTechSelect={handleTechSelect}
                     handleTechRemove={handleTechRemove}
+                    availableLanguages={TECH_STACK_CONFIG}
                 />
             }
         />
