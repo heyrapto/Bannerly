@@ -15,49 +15,51 @@ const HeroSection = () => {
     return (
         <section className="relative flex flex-col items-center justify-start pt-20 sm:pt-24 pb-32 overflow-hidden max-w-[1440px] mx-auto w-full">
             {/* Icons */}
-            <FloatingIcon className="top-[18%] left-[10%] w-14 sm:w-20 lg:w-24">
-                <span className="flex items-center justify-center bg-white rounded-full shadow-xl w-full h-full text-[3rem] sm:text-[4rem] lg:text-[5rem]">
-                    🌐
-                </span>
-            </FloatingIcon>
+            <div className="md:flex hidden">
+                <FloatingIcon className="top-[18%] left-[10%] w-14 sm:w-20 lg:w-24">
+                    <span className="flex items-center justify-center bg-white rounded-full shadow-xl w-full h-full text-[3rem] sm:text-[4rem] lg:text-[5rem]">
+                        🌐
+                    </span>
+                </FloatingIcon>
 
-            <FloatingIcon className="top-[35%] left-[25%] w-12 sm:w-16 lg:w-20 rotate-[-10deg]">
-                <span className="flex items-center justify-center  text-[3rem] sm:text-[4rem] lg:text-[7rem]">
-                    💝
-                </span>
-            </FloatingIcon>
+                <FloatingIcon className="top-[35%] left-[25%] w-12 sm:w-16 lg:w-20 rotate-[-10deg]">
+                    <span className="flex items-center justify-center  text-[3rem] sm:text-[4rem] lg:text-[7rem]">
+                        💝
+                    </span>
+                </FloatingIcon>
 
-            <FloatingIcon className="bottom-[42%] left-[10%] w-24 sm:w-32 rotate-[8deg] hidden sm:block">
-                <span className="flex items-center justify-center bg-white rounded-full shadow-xl w-full h-full text-[4rem] sm:text-[5rem]">
-                    🔥
-                </span>
-            </FloatingIcon>
+                <FloatingIcon className="bottom-[42%] left-[10%] w-24 sm:w-32 rotate-[8deg] hidden sm:block">
+                    <span className="flex items-center justify-center bg-white rounded-full shadow-xl w-full h-full text-[4rem] sm:text-[5rem]">
+                        🔥
+                    </span>
+                </FloatingIcon>
 
-            <FloatingIcon className="bottom-[28%] left-[20%] w-16 sm:w-24 rotate-[6deg] hidden sm:block">
-                <span className="flex items-center justify-center bg-white rounded-full shadow-xl w-full h-full text-[3rem] sm:text-[4rem]">
-                    👀
-                </span>
-            </FloatingIcon>
+                <FloatingIcon className="bottom-[28%] left-[20%] w-16 sm:w-24 rotate-[6deg] hidden sm:block">
+                    <span className="flex items-center justify-center bg-white rounded-full shadow-xl w-full h-full text-[3rem] sm:text-[4rem]">
+                        👀
+                    </span>
+                </FloatingIcon>
 
-            <FloatingIcon className="top-[30%] right-[20%] w-24 sm:w-32 rotate-[0deg]">
-                <Icons.Bear />
-            </FloatingIcon>
+                <FloatingIcon className="top-[30%] right-[20%] w-24 sm:w-32 rotate-[0deg]">
+                    <Icons.Bear />
+                </FloatingIcon>
 
-            <FloatingIcon className="top-[20%] right-[5%] w-20 sm:w-28 rotate-[-6deg]">
-                <span className="flex items-center justify-center bg-white rounded-full shadow-xl w-full h-full text-[3.5rem] sm:text-[4.5rem]">
-                    🎨
-                </span>
-            </FloatingIcon>
+                <FloatingIcon className="top-[20%] right-[5%] w-20 sm:w-28 rotate-[-6deg]">
+                    <span className="flex items-center justify-center bg-white rounded-full shadow-xl w-full h-full text-[3.5rem] sm:text-[4.5rem]">
+                        🎨
+                    </span>
+                </FloatingIcon>
 
-            <FloatingIcon className="top-[50%] right-[10%] w-24 sm:w-[200px] rotate-[10deg] hidden sm:block">
-                <Icons.Banner />
-            </FloatingIcon>
+                <FloatingIcon className="top-[50%] right-[10%] w-24 sm:w-[200px] rotate-[10deg] hidden sm:block">
+                    <Icons.Banner />
+                </FloatingIcon>
 
-            <FloatingIcon className="bottom-[20%] right-[20%] w-16 sm:w-24 rotate-[-20deg]">
-                <span className="flex items-center justify-center bg-white rounded-full shadow-xl w-full h-full text-[3rem] sm:text-[4rem]">
-                    ✌️
-                </span>
-            </FloatingIcon>
+                <FloatingIcon className="bottom-[20%] right-[20%] w-16 sm:w-24 rotate-[-20deg]">
+                    <span className="flex items-center justify-center bg-white rounded-full shadow-xl w-full h-full text-[3rem] sm:text-[4rem]">
+                        ✌️
+                    </span>
+                </FloatingIcon>
+            </div>
 
             {/* Main Content */}
             <div className="flex flex-col items-center text-center z-10">
@@ -69,7 +71,7 @@ const HeroSection = () => {
                     Create stunning, personalized banners with built-in tools and powerful customization options.
                 </h1>
 
-                <Button className="mt-6" size="lg" onClick={() => navigate('/editor')}>
+                <Button className="mt-6" size="sm" onClick={() => navigate('/editor')}>
                     Start Creating
                 </Button>
 

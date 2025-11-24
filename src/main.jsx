@@ -4,7 +4,6 @@ import './index.css'
 import App from './App.jsx'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NotFound from './pages/NotFound.jsx';
-import SignIn from './pages/SignIn.jsx';
 import Dashboard from './pages/dashboard/page.jsx';
 import Editor from './pages/dashboard/editor/page.jsx';
 import { AuthProvider } from './context/AuthContext';
@@ -17,7 +16,6 @@ createRoot(document.getElementById('root')).render(
         <Router>
           <Routes>
             <Route path="/" element={<App />} />
-            <Route path="/sign-in" element={<SignIn />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/editor" element={<Editor />} />
             {/* 404 */}
