@@ -219,6 +219,7 @@ const PropertiesPanel = ({
                                     </span>
                                 )}
                             </div>
+                            <p className="text-xs text-gray-600 mt-0.5">Add branding to your exports</p>
                         </div>
                     </div>
                     <div className="relative">
