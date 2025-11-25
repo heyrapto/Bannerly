@@ -104,7 +104,7 @@ const AIChat = ({ formData, setFormData, selectedTech, handleTechSelect, handleT
     };
 
     return (
-        <div className="flex flex-col h-full bg-white animate-in slide-in-from-left duration-300 relative">
+        <div className="flex flex-col h-[90vh] bg-white animate-in slide-in-from-left duration-300 relative">
             <div className="p-4 border-b border-gray-200 flex items-center gap-2 bg-gradient-to-r from-purple-50 to-blue-50">
                 <Sparkles size={18} className="text-purple-600" />
                 <h3 className="font-bold text-gray-900">AI Assistant</h3>
