@@ -1,6 +1,6 @@
 import { Analytics } from "@vercel/analytics/react";
-import OnBoarding from "./pages/OnBoarding";
-import Navbar from "./components/shared/Navbar";
+import OnBoarding from "./pages/landing/OnBoarding";
+
 const App = () => {
   return(
     <>

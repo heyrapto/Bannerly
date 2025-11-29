@@ -23,7 +23,6 @@ import cpp from './svg/cpp.svg'
 import psql from './svg/psql.svg'
 import mongo from './svg/mongo.svg'
 import dart from './svg/dart.svg'
-import B from './B.png'
 import docker from './svg/docker.svg'
 import flutter from './svg/flutter.svg'
 import kubernetes from './svg/kubernetes.svg'
@@ -59,8 +58,6 @@ import flutterflow from './svg/flutterflow.svg'
 import fastapi from './svg/fastapi.svg'
 import springboot from './svg/springboot.svg'
 import webassembly from './svg/webassembly.svg'
-import RaptoBanner from "./coming-soon/rapto-banner.png"
-import RaptoPFP from "./coming-soon/rapto.png"
 
 export {
   David,
@@ -88,7 +85,6 @@ export {
   dart,
   psql,
   mongo,
-  B,
   docker,
   flutter,
   kubernetes,
@@ -124,6 +120,4 @@ export {
   fastapi,
   springboot,
   webassembly,
-  RaptoBanner,
-  RaptoPFP
 }

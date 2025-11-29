@@ -18,12 +18,13 @@
     "clsx": "^2.1.1",
     "devicon": "^2.16.0",
     "framer-motion": "^11.13.1",
+    "gsap": "^3.13.0",
     "html-to-image": "^1.11.11",
     "lucide-react": "^0.465.0",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-icons": "^5.4.0",
+    "react-icons": "^5.5.0",
     "react-router-dom": "^7.0.2"
   },
   "devDependencies": {
