@@ -11,8 +11,8 @@ import { useAuth } from '../../../../context/AuthContext';
 import { Lock } from 'lucide-react';
 import ColorPickerPopover from './ColorPickerPopover';
 import MediaLibraryModal from './MediaLibraryModal';
-
 import UpgradeModal from './UpgradeModal';
+import TechStackSelector from './TechStackSelector';
 
 const PropertiesPanel = ({
     activeTool,
@@ -23,26 +23,11 @@ const PropertiesPanel = ({
     handleTechRemove,
     availableLanguages
 }) => {
-    const [searchTerm, setSearchTerm] = useState("");
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [isUploading, setIsUploading] = useState(false);
     const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
     const [isMediaLibraryOpen, setIsMediaLibraryOpen] = useState(false);
     const [isUpgradeModalOpen, setIsUpgradeModalOpen] = useState(false);
-    const dropdownRef = useRef(null);
-    const fileInputRef = useRef(null);
     const { user } = useAuth();
-
-    // Close dropdown when clicking outside
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-                setIsDropdownOpen(false);
-            }
-        };
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, []);
 
     const handleFormChange = (e) => {
         const { name, value } = e.target;
@@ -74,28 +59,6 @@ const PropertiesPanel = ({
             setIsUploading(false);
         }
     };
-
-    const filteredTech = useMemo(() =>
-        TECH_STACK_CONFIG.filter(tech =>
-            tech.name.toLowerCase().includes(searchTerm.toLowerCase())
-        ),
-        [searchTerm]
-    );
-
-    // Group tech stack
-    const techCategories = useMemo(() => {
-        const categories = {};
-        filteredTech.forEach(tech => {
-            let category = "Frontend";
-            if (tech.name.match(/node|python|java|php|go|ruby/i)) category = "Backend";
-            else if (tech.name.match(/figma|design|sketch|adobe/i)) category = "Design";
-            else if (tech.name.match(/docker|aws|cloud|git/i)) category = "DevOps";
-
-            if (!categories[category]) categories[category] = [];
-            categories[category].push(tech);
-        });
-        return categories;
-    }, [filteredTech]);
 
     const renderProfileParams = () => (
         <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
@@ -250,138 +213,6 @@ const PropertiesPanel = ({
                 </div>
             </div>
         </div>
-    );
-
-    const renderTechParams = () => (
-        <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
-            <div>
-                <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-lg font-bold text-gray-900">Code Editor</h3>
-                    <div className="bg-blue-100 p-1 rounded">
-                        <Layout size={16} className="text-blue-600" />
-                    </div>
-                </div>
-
-                <p className="text-gray-500 text-xs mb-4">Select up to {MAX_STACK_SELECTIONS} technologies</p>
-
-                {/* Selected Tags */}
-                <div className="flex flex-wrap gap-2 mb-4">
-                    {selectedTech.map(techName => {
-                        const tech = TECH_STACK_CONFIG.find(t => t.name === techName);
-                        return (
-                            <div key={techName} className="flex items-center gap-1 pl-2 pr-1 py-1 bg-blue-50 border border-blue-100 rounded text-xs text-blue-700">
-                                <span>{techName}</span>
-                                <button onClick={() => handleTechRemove(techName)} className="hover:bg-blue-100 rounded p-0.5">
-                                    <X size={12} />
-                                </button>
-                            </div>
-                        );
-                    })}
-                    {selectedTech.length === 0 && <span className="text-gray-500 text-xs italic">No tech selected</span>}
-                </div>
-
-                {/* Search */}
-                <div className="relative" ref={dropdownRef}>
-                    <div className="relative">
-                        <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
-                            <Search size={16} />
-                        </div>
-                        <input
-                            type="text"
-                            placeholder="Search technologies..."
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                            onFocus={() => setIsDropdownOpen(true)}
-                            className="w-full bg-gray-50 border border-gray-200 text-gray-900 text-sm rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent block pl-10 p-2.5"
-                        />
-                    </div>
-
-                    {isDropdownOpen && (
-                        <div className="absolute z-50 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-xl max-h-60 overflow-y-auto">
-                            {Object.entries(techCategories).map(([category, techs]) => (
-                                <div key={category}>
-                                    <div className="sticky top-0 bg-gray-50 px-3 py-1 text-[10px] font-bold text-gray-500 uppercase tracking-wider border-b border-gray-100">
-                                        {category}
-                                    </div>
-                                    {techs.map(tech => (
-                                        <button
-                                            key={tech.name}
-                                            onClick={() => handleTechSelect(tech.name)}
-                                            disabled={selectedTech.includes(tech.name) || (selectedTech.length >= MAX_STACK_SELECTIONS && !selectedTech.includes(tech.name))}
-                                            className={`w-full flex items-center gap-3 px-3 py-2 text-sm text-left transition-colors
-                                                ${selectedTech.includes(tech.name) ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'}
-                                                ${(selectedTech.length >= MAX_STACK_SELECTIONS && !selectedTech.includes(tech.name)) ? 'opacity-50 cursor-not-allowed' : ''}
-`}
-                                        >
-                                            <img src={tech.icon} alt="" className="w-4 h-4" />
-                                            <span className="flex-1">{tech.name}</span>
-                                            {selectedTech.includes(tech.name) && <Check size={14} />}
-                                        </button>
-                                    ))}
-                                </div>
-                            ))}
-                        </div>
-                    )}
-                </div>
-            </div>
-
-            {/* Tech Stack Customization */}
-            <div className="space-y-6 pt-6 border-t border-gray-100">
-                {/* Stack Style */}
-                <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Stack Style</label>
-                    <div className="grid grid-cols-4 gap-2">
-                        {[
-                            { id: 'glass', label: 'Glass', class: 'bg-gray-800 text-white' },
-                            { id: 'solid-white', label: 'White', class: 'bg-white border border-gray-200 text-gray-900' },
-                            { id: 'solid-black', label: 'Black', class: 'bg-black text-white' },
-                            { id: 'none', label: 'None', class: 'bg-gray-100 text-gray-500' },
-                        ].map(style => (
-                            <button
-                                key={style.id}
-                                onClick={() => handleFormChange({ target: { name: 'techStackStyle', value: style.id } })}
-                                className={`py-2 text-xs font-medium rounded-lg transition-all ${formData.techStackStyle === style.id ? 'bg-gray-700 text-white' : 'opacity-70 hover:opacity-100'}`}
-                            >
-                                {style.label}
-                            </button>
-                        ))}
-                    </div>
-                </div>
-
-            </div>
-
-            {/* Individual Background Toggle */}
-            <div className="flex items-center gap-2">
-                <input
-                    type="checkbox"
-                    id="techStackIndividual"
-                    checked={formData.techStackIndividual || false}
-                    onChange={(e) => handleFormChange({ target: { name: 'techStackIndividual', value: e.target.checked } })}
-                    className="w-4 h-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500"
-                />
-                <label htmlFor="techStackIndividual" className="text-xs text-gray-600 select-none cursor-pointer">
-                    Apply to individual items
-                </label>
-            </div>
-
-            {/* Icon Size */}
-            <div>
-                <div className="flex items-center justify-between mb-2">
-                    <label className="text-sm font-medium text-gray-700">Icon Size</label>
-                    <span className="text-xs text-gray-500">{formData.iconSize}px</span>
-                </div>
-                <input
-                    type="range"
-                    min="16"
-                    max="64"
-                    step="4"
-                    name="iconSize"
-                    value={formData.iconSize || 32}
-                    onChange={handleFormChange}
-                    className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
-                />
-            </div>
-        </div >
     );
 
     const renderThemeParams = () => (
@@ -551,7 +382,15 @@ const PropertiesPanel = ({
     return (
         <div className="p-6">
             {activeTool === 'profile' && renderProfileParams()}
-            {activeTool === 'tech' && renderTechParams()}
+            {activeTool === 'tech' && (
+                <TechStackSelector
+                    selectedTech={selectedTech}
+                    handleTechSelect={handleTechSelect}
+                    handleTechRemove={handleTechRemove}
+                    formData={formData}
+                    handleFormChange={handleFormChange}
+                />
+            )}
             {activeTool === 'theme' && renderThemeParams()}
             {activeTool === 'ai' && (
                 <AIChat
