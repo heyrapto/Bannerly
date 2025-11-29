@@ -10,7 +10,7 @@ const MissionSection = () => {
         return cleanup;
     }, []);
 
-    const text = "Great design opens doors 🚪 and Bannerly V3 helps you unlock them 🔓 with intuitive tools 🤖 crafted for clarity, creativity 🎨 and impact 💥 We create for people ❤️ to help you share your story, grow your presence, and inspire others 🌟";
+    const text = "Great design opens doors 🚪 and we will help you unlock them 🔓 with intuitive tools 🤖 crafted for clarity, creativity 🎨 and impact 💥 We create for people ❤️ to help you share your story, grow your presence, and inspire others 🌟";
 
     const parts = text.split(/(🚪|🔓|🤖|🎨|💥|❤️|🌟)/g);
 
