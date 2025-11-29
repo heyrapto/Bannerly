@@ -13,6 +13,7 @@ import ColorPickerPopover from './ColorPickerPopover';
 import MediaLibraryModal from './MediaLibraryModal';
 import UpgradeModal from './UpgradeModal';
 import TechStackSelector from './TechStackSelector';
+import ProfileEditor from './ProfileEditor';
 
 const PropertiesPanel = ({
     activeTool,
@@ -59,161 +60,6 @@ const PropertiesPanel = ({
             setIsUploading(false);
         }
     };
-
-    const renderProfileParams = () => (
-        <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
-            {/* Header Section */}
-            <div className="space-y-6">
-                <div className="flex items-center justify-between">
-                    <h3 className="text-sm font-semibold text-gray-900">Profile Information</h3>
-                    <div className="flex items-center gap-2">
-                        <span className="text-xs text-gray-500">Visible</span>
-                        <button
-                            className="w-10 h-5 bg-blue-600 rounded-full relative transition-colors"
-                            onClick={() => {/* Toggle visibility logic if needed */ }}
-                        >
-                            <div className="absolute right-1 top-1 w-3 h-3 bg-white rounded-full shadow-sm"></div>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            {/* Main Form Card */}
-            <div className="bg-white rounded-2xl duration-300">
-                <div className="space-y-5">
-                    {/* Name Input */}
-                    <div className="group">
-                        <label className="flex items-center gap-2 text-xs font-semibold text-gray-700 mb-2 uppercase tracking-wide">
-                            <User size={14} className="text-blue-600" />
-                            Full Name
-                        </label>
-                        <div className="relative">
-                            <input
-                                type="text"
-                                name="name"
-                                value={formData.name}
-                                onChange={handleFormChange}
-                                placeholder="John Doe"
-                                className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:bg-white focus:shadow-lg focus:shadow-blue-100/50 transition-all duration-300 hover:border-gray-300"
-                            />
-                            <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500/0 to-purple-500/0 group-focus-within:from-blue-500/5 group-focus-within:to-purple-500/5 pointer-events-none transition-all duration-300"></div>
-                        </div>
-                    </div>
-
-                    {/* Field Input */}
-                    <div className="group">
-                        <label className="flex items-center gap-2 text-xs font-semibold text-gray-700 mb-2 uppercase tracking-wide">
-                            <Briefcase size={14} className="text-blue-600" />
-                            Role / Title
-                        </label>
-                        <div className="relative">
-                            <input
-                                type="text"
-                                name="field"
-                                value={formData.field}
-                                onChange={handleFormChange}
-                                placeholder="Software Engineer"
-                                className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:bg-white focus:shadow-lg focus:shadow-blue-100/50 transition-all duration-300 hover:border-gray-300"
-                            />
-                            <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500/0 to-purple-500/0 group-focus-within:from-blue-500/5 group-focus-within:to-purple-500/5 pointer-events-none transition-all duration-300"></div>
-                        </div>
-                    </div>
-
-                    <div className="relative py-3">
-                        <div className="absolute inset-0 flex items-center">
-                            <div className="w-full border-t border-gray-200"></div>
-                        </div>
-                        <div className="relative flex justify-center text-xs">
-                            <span className="bg-white px-3 text-gray-500 font-medium">Social Profiles</span>
-                        </div>
-                    </div>
-
-                    {/* Social Handles */}
-                    <div className="grid grid-cols-1 gap-5">
-                        <div className="group">
-                            <label className="flex items-center gap-2 text-xs font-semibold text-gray-700 mb-2 uppercase tracking-wide">
-                                <Twitter size={14} className="text-blue-600" />
-                                Twitter
-                            </label>
-                            <div className="relative">
-                                <input
-                                    type="text"
-                                    name="twitter"
-                                    value={formData.twitter}
-                                    onChange={handleFormChange}
-                                    placeholder="@username"
-                                    className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:bg-white focus:shadow-lg focus:shadow-blue-100/50 transition-all duration-300 hover:border-gray-300"
-                                />
-                                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500/0 to-purple-500/0 group-focus-within:from-blue-500/5 group-focus-within:to-purple-500/5 pointer-events-none transition-all duration-300"></div>
-                            </div>
-                        </div>
-
-                        <div className="group">
-                            <label className="flex items-center gap-2 text-xs font-semibold text-gray-700 mb-2 uppercase tracking-wide">
-                                <Github size={14} className="text-blue-600" />
-                                GitHub
-                            </label>
-                            <div className="relative">
-                                <input
-                                    type="text"
-                                    name="github"
-                                    value={formData.github}
-                                    onChange={handleFormChange}
-                                    placeholder="username"
-                                    className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:bg-white focus:shadow-lg focus:shadow-blue-100/50 transition-all duration-300 hover:border-gray-300"
-                                />
-                                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500/0 to-purple-500/0 group-focus-within:from-blue-500/5 group-focus-within:to-purple-500/5 pointer-events-none transition-all duration-300"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* Watermark Toggle Card */}
-            <div className="bg-gradient-to-br from-gray-50 to-gray-100/50 rounded-2xl p-3 border-2 border-gray-200 shadow-sm hover:shadow-md transition-all duration-300">
-                <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center shadow-sm">
-                            <span className="text-lg">💧</span>
-                        </div>
-                        <div>
-                            <div className="flex items-center gap-2">
-                                <span className="text-sm font-bold text-gray-900">Show Watermark</span>
-                                {(!user || user.plan !== 'pro') && (
-                                    <span className="px-2 py-0.5 bg-gradient-to-r from-amber-400 to-orange-500 text-white text-[10px] font-black uppercase rounded-md flex items-center gap-1 shadow-sm">
-                                        <Lock size={10} /> Pro
-                                    </span>
-                                )}
-                            </div>
-                            <p className="text-xs text-gray-600 mt-0.5">Add branding to your exports</p>
-                        </div>
-                    </div>
-                    <div className="relative">
-                        <input
-                            type="checkbox"
-                            name="showWatermark"
-                            id="showWatermark"
-                            checked={formData.showWatermark !== false}
-                            onChange={(e) => {
-                                if (user?.plan === 'pro') {
-                                    handleFormChange({ target: { name: 'showWatermark', value: e.target.checked } });
-                                } else {
-                                    setIsUpgradeModalOpen(true);
-                                }
-                            }}
-                            className="sr-only peer"
-                        />
-                        <label
-                            htmlFor="showWatermark"
-                            className="relative block w-14 h-7 bg-gray-300 rounded-full cursor-pointer transition-all duration-300 peer-checked:bg-gradient-to-r peer-checked:from-blue-500 peer-checked:to-blue-600 hover:shadow-lg"
-                        >
-                            <div className={`absolute top-0.5 left-0.5 w-6 h-6 bg-white rounded-full shadow-md transition-transform duration-300 ${formData.showWatermark !== false ? 'translate-x-7' : 'translate-x-0'}`}></div>
-                        </label>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
 
     const renderThemeParams = () => (
         <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
@@ -381,7 +227,12 @@ const PropertiesPanel = ({
 
     return (
         <div className="p-6">
-            {activeTool === 'profile' && renderProfileParams()}
+            {activeTool === 'profile' && (
+                <ProfileEditor
+                    formData={formData}
+                    handleFormChange={handleFormChange}
+                />
+            )}
             {activeTool === 'tech' && (
                 <TechStackSelector
                     selectedTech={selectedTech}
