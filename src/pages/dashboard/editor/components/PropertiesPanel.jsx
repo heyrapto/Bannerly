@@ -12,6 +12,8 @@ import { Lock } from 'lucide-react';
 import ColorPickerPopover from './ColorPickerPopover';
 import MediaLibraryModal from './MediaLibraryModal';
 
+import UpgradeModal from './UpgradeModal';
+
 const PropertiesPanel = ({
     activeTool,
     formData,
@@ -26,6 +28,7 @@ const PropertiesPanel = ({
     const [isUploading, setIsUploading] = useState(false);
     const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
     const [isMediaLibraryOpen, setIsMediaLibraryOpen] = useState(false);
+    const [isUpgradeModalOpen, setIsUpgradeModalOpen] = useState(false);
     const dropdownRef = useRef(null);
     const fileInputRef = useRef(null);
     const { user } = useAuth();
@@ -113,7 +116,7 @@ const PropertiesPanel = ({
             </div>
 
             {/* Main Form Card */}
-            <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-300">
+            <div className="bg-white rounded-2xl duration-300">
                 <div className="space-y-5">
                     {/* Name Input */}
                     <div className="group">
@@ -204,11 +207,11 @@ const PropertiesPanel = ({
             </div>
 
             {/* Watermark Toggle Card */}
-            <div className="bg-gradient-to-br from-gray-50 to-gray-100/50 rounded-2xl p-5 border-2 border-gray-200 shadow-sm hover:shadow-md transition-all duration-300">
+            <div className="bg-gradient-to-br from-gray-50 to-gray-100/50 rounded-2xl p-3 border-2 border-gray-200 shadow-sm hover:shadow-md transition-all duration-300">
                 <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-sm">
-                            <span className="text-xl">💧</span>
+                    <div className="flex items-center gap-2">
+                        <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center shadow-sm">
+                            <span className="text-lg">💧</span>
                         </div>
                         <div>
                             <div className="flex items-center gap-2">
@@ -232,7 +235,7 @@ const PropertiesPanel = ({
                                 if (user?.plan === 'pro') {
                                     handleFormChange({ target: { name: 'showWatermark', value: e.target.checked } });
                                 } else {
-                                    alert("Upgrade to Pro to remove watermark!");
+                                    setIsUpgradeModalOpen(true);
                                 }
                             }}
                             className="sr-only peer"
@@ -337,7 +340,7 @@ const PropertiesPanel = ({
                             <button
                                 key={style.id}
                                 onClick={() => handleFormChange({ target: { name: 'techStackStyle', value: style.id } })}
-                                className={`py-2 text-xs font-medium rounded-lg transition-all ${style.class} ${formData.techStackStyle === style.id ? 'ring-2 ring-blue-500 ring-offset-1' : 'opacity-70 hover:opacity-100'}`}
+                                className={`py-2 text-xs font-medium rounded-lg transition-all ${formData.techStackStyle === style.id ? 'bg-gray-700 text-white' : 'opacity-70 hover:opacity-100'}`}
                             >
                                 {style.label}
                             </button>
@@ -565,6 +568,7 @@ const PropertiesPanel = ({
                     <p>Export options coming soon!</p>
                 </div>
             )}
+            <UpgradeModal isOpen={isUpgradeModalOpen} onClose={() => setIsUpgradeModalOpen(false)} />
         </div>
     );
 };
