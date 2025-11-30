@@ -11,6 +11,9 @@ import { useAuth } from '../../../../context/AuthContext';
 import { Lock } from 'lucide-react';
 import ColorPickerPopover from './ColorPickerPopover';
 import MediaLibraryModal from './MediaLibraryModal';
+import UpgradeModal from './UpgradeModal';
+import TechStackSelector from './TechStackSelector';
+import ProfileEditor from './ProfileEditor';
 
 const PropertiesPanel = ({
     activeTool,
@@ -21,25 +24,11 @@ const PropertiesPanel = ({
     handleTechRemove,
     availableLanguages
 }) => {
-    const [searchTerm, setSearchTerm] = useState("");
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [isUploading, setIsUploading] = useState(false);
     const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
     const [isMediaLibraryOpen, setIsMediaLibraryOpen] = useState(false);
-    const dropdownRef = useRef(null);
-    const fileInputRef = useRef(null);
+    const [isUpgradeModalOpen, setIsUpgradeModalOpen] = useState(false);
     const { user } = useAuth();
-
-    // Close dropdown when clicking outside
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-                setIsDropdownOpen(false);
-            }
-        };
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, []);
 
     const handleFormChange = (e) => {
         const { name, value } = e.target;
@@ -71,314 +60,6 @@ const PropertiesPanel = ({
             setIsUploading(false);
         }
     };
-
-    const filteredTech = useMemo(() =>
-        TECH_STACK_CONFIG.filter(tech =>
-            tech.name.toLowerCase().includes(searchTerm.toLowerCase())
-        ),
-        [searchTerm]
-    );
-
-    // Group tech stack
-    const techCategories = useMemo(() => {
-        const categories = {};
-        filteredTech.forEach(tech => {
-            let category = "Frontend";
-            if (tech.name.match(/node|python|java|php|go|ruby/i)) category = "Backend";
-            else if (tech.name.match(/figma|design|sketch|adobe/i)) category = "Design";
-            else if (tech.name.match(/docker|aws|cloud|git/i)) category = "DevOps";
-
-            if (!categories[category]) categories[category] = [];
-            categories[category].push(tech);
-        });
-        return categories;
-    }, [filteredTech]);
-
-    const renderProfileParams = () => (
-        <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
-            {/* Header Section */}
-            <div className="space-y-6">
-                <div className="flex items-center justify-between">
-                    <h3 className="text-sm font-semibold text-gray-900">Profile Information</h3>
-                    <div className="flex items-center gap-2">
-                        <span className="text-xs text-gray-500">Visible</span>
-                        <button
-                            className="w-10 h-5 bg-blue-600 rounded-full relative transition-colors"
-                            onClick={() => {/* Toggle visibility logic if needed */ }}
-                        >
-                            <div className="absolute right-1 top-1 w-3 h-3 bg-white rounded-full shadow-sm"></div>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            {/* Main Form Card */}
-            <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-300">
-                <div className="space-y-5">
-                    {/* Name Input */}
-                    <div className="group">
-                        <label className="flex items-center gap-2 text-xs font-semibold text-gray-700 mb-2 uppercase tracking-wide">
-                            <User size={14} className="text-blue-600" />
-                            Full Name
-                        </label>
-                        <div className="relative">
-                            <input
-                                type="text"
-                                name="name"
-                                value={formData.name}
-                                onChange={handleFormChange}
-                                placeholder="John Doe"
-                                className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:bg-white focus:shadow-lg focus:shadow-blue-100/50 transition-all duration-300 hover:border-gray-300"
-                            />
-                            <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500/0 to-purple-500/0 group-focus-within:from-blue-500/5 group-focus-within:to-purple-500/5 pointer-events-none transition-all duration-300"></div>
-                        </div>
-                    </div>
-
-                    {/* Field Input */}
-                    <div className="group">
-                        <label className="flex items-center gap-2 text-xs font-semibold text-gray-700 mb-2 uppercase tracking-wide">
-                            <Briefcase size={14} className="text-blue-600" />
-                            Role / Title
-                        </label>
-                        <div className="relative">
-                            <input
-                                type="text"
-                                name="field"
-                                value={formData.field}
-                                onChange={handleFormChange}
-                                placeholder="Software Engineer"
-                                className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:bg-white focus:shadow-lg focus:shadow-blue-100/50 transition-all duration-300 hover:border-gray-300"
-                            />
-                            <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500/0 to-purple-500/0 group-focus-within:from-blue-500/5 group-focus-within:to-purple-500/5 pointer-events-none transition-all duration-300"></div>
-                        </div>
-                    </div>
-
-                    <div className="relative py-3">
-                        <div className="absolute inset-0 flex items-center">
-                            <div className="w-full border-t border-gray-200"></div>
-                        </div>
-                        <div className="relative flex justify-center text-xs">
-                            <span className="bg-white px-3 text-gray-500 font-medium">Social Profiles</span>
-                        </div>
-                    </div>
-
-                    {/* Social Handles */}
-                    <div className="grid grid-cols-1 gap-5">
-                        <div className="group">
-                            <label className="flex items-center gap-2 text-xs font-semibold text-gray-700 mb-2 uppercase tracking-wide">
-                                <Twitter size={14} className="text-blue-600" />
-                                Twitter
-                            </label>
-                            <div className="relative">
-                                <input
-                                    type="text"
-                                    name="twitter"
-                                    value={formData.twitter}
-                                    onChange={handleFormChange}
-                                    placeholder="@username"
-                                    className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:bg-white focus:shadow-lg focus:shadow-blue-100/50 transition-all duration-300 hover:border-gray-300"
-                                />
-                                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500/0 to-purple-500/0 group-focus-within:from-blue-500/5 group-focus-within:to-purple-500/5 pointer-events-none transition-all duration-300"></div>
-                            </div>
-                        </div>
-
-                        <div className="group">
-                            <label className="flex items-center gap-2 text-xs font-semibold text-gray-700 mb-2 uppercase tracking-wide">
-                                <Github size={14} className="text-blue-600" />
-                                GitHub
-                            </label>
-                            <div className="relative">
-                                <input
-                                    type="text"
-                                    name="github"
-                                    value={formData.github}
-                                    onChange={handleFormChange}
-                                    placeholder="username"
-                                    className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:bg-white focus:shadow-lg focus:shadow-blue-100/50 transition-all duration-300 hover:border-gray-300"
-                                />
-                                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500/0 to-purple-500/0 group-focus-within:from-blue-500/5 group-focus-within:to-purple-500/5 pointer-events-none transition-all duration-300"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* Watermark Toggle Card */}
-            <div className="bg-gradient-to-br from-gray-50 to-gray-100/50 rounded-2xl p-5 border-2 border-gray-200 shadow-sm hover:shadow-md transition-all duration-300">
-                <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-sm">
-                            <span className="text-xl">💧</span>
-                        </div>
-                        <div>
-                            <div className="flex items-center gap-2">
-                                <span className="text-sm font-bold text-gray-900">Show Watermark</span>
-                                {(!user || user.plan !== 'pro') && (
-                                    <span className="px-2 py-0.5 bg-gradient-to-r from-amber-400 to-orange-500 text-white text-[10px] font-black uppercase rounded-md flex items-center gap-1 shadow-sm">
-                                        <Lock size={10} /> Pro
-                                    </span>
-                                )}
-                            </div>
-                        </div>
-                    </div>
-                    <div className="relative">
-                        <input
-                            type="checkbox"
-                            name="showWatermark"
-                            id="showWatermark"
-                            checked={formData.showWatermark !== false}
-                            onChange={(e) => {
-                                if (user?.plan === 'pro') {
-                                    handleFormChange({ target: { name: 'showWatermark', value: e.target.checked } });
-                                } else {
-                                    alert("Upgrade to Pro to remove watermark!");
-                                }
-                            }}
-                            className="sr-only peer"
-                        />
-                        <label
-                            htmlFor="showWatermark"
-                            className="relative block w-14 h-7 bg-gray-300 rounded-full cursor-pointer transition-all duration-300 peer-checked:bg-gradient-to-r peer-checked:from-blue-500 peer-checked:to-blue-600 hover:shadow-lg"
-                        >
-                            <div className={`absolute top-0.5 left-0.5 w-6 h-6 bg-white rounded-full shadow-md transition-transform duration-300 ${formData.showWatermark !== false ? 'translate-x-7' : 'translate-x-0'}`}></div>
-                        </label>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-
-    const renderTechParams = () => (
-        <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
-            <div>
-                <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-lg font-bold text-gray-900">Code Editor</h3>
-                    <div className="bg-blue-100 p-1 rounded">
-                        <Layout size={16} className="text-blue-600" />
-                    </div>
-                </div>
-
-                <p className="text-gray-500 text-xs mb-4">Select up to {MAX_STACK_SELECTIONS} technologies</p>
-
-                {/* Selected Tags */}
-                <div className="flex flex-wrap gap-2 mb-4">
-                    {selectedTech.map(techName => {
-                        const tech = TECH_STACK_CONFIG.find(t => t.name === techName);
-                        return (
-                            <div key={techName} className="flex items-center gap-1 pl-2 pr-1 py-1 bg-blue-50 border border-blue-100 rounded text-xs text-blue-700">
-                                <span>{techName}</span>
-                                <button onClick={() => handleTechRemove(techName)} className="hover:bg-blue-100 rounded p-0.5">
-                                    <X size={12} />
-                                </button>
-                            </div>
-                        );
-                    })}
-                    {selectedTech.length === 0 && <span className="text-gray-500 text-xs italic">No tech selected</span>}
-                </div>
-
-                {/* Search */}
-                <div className="relative" ref={dropdownRef}>
-                    <div className="relative">
-                        <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
-                            <Search size={16} />
-                        </div>
-                        <input
-                            type="text"
-                            placeholder="Search technologies..."
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                            onFocus={() => setIsDropdownOpen(true)}
-                            className="w-full bg-gray-50 border border-gray-200 text-gray-900 text-sm rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent block pl-10 p-2.5"
-                        />
-                    </div>
-
-                    {isDropdownOpen && (
-                        <div className="absolute z-50 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-xl max-h-60 overflow-y-auto">
-                            {Object.entries(techCategories).map(([category, techs]) => (
-                                <div key={category}>
-                                    <div className="sticky top-0 bg-gray-50 px-3 py-1 text-[10px] font-bold text-gray-500 uppercase tracking-wider border-b border-gray-100">
-                                        {category}
-                                    </div>
-                                    {techs.map(tech => (
-                                        <button
-                                            key={tech.name}
-                                            onClick={() => handleTechSelect(tech.name)}
-                                            disabled={selectedTech.includes(tech.name) || (selectedTech.length >= MAX_STACK_SELECTIONS && !selectedTech.includes(tech.name))}
-                                            className={`w-full flex items-center gap-3 px-3 py-2 text-sm text-left transition-colors
-                                                ${selectedTech.includes(tech.name) ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'}
-                                                ${(selectedTech.length >= MAX_STACK_SELECTIONS && !selectedTech.includes(tech.name)) ? 'opacity-50 cursor-not-allowed' : ''}
-`}
-                                        >
-                                            <img src={tech.icon} alt="" className="w-4 h-4" />
-                                            <span className="flex-1">{tech.name}</span>
-                                            {selectedTech.includes(tech.name) && <Check size={14} />}
-                                        </button>
-                                    ))}
-                                </div>
-                            ))}
-                        </div>
-                    )}
-                </div>
-            </div>
-
-            {/* Tech Stack Customization */}
-            <div className="space-y-6 pt-6 border-t border-gray-100">
-                {/* Stack Style */}
-                <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Stack Style</label>
-                    <div className="grid grid-cols-4 gap-2">
-                        {[
-                            { id: 'glass', label: 'Glass', class: 'bg-gray-800 text-white' },
-                            { id: 'solid-white', label: 'White', class: 'bg-white border border-gray-200 text-gray-900' },
-                            { id: 'solid-black', label: 'Black', class: 'bg-black text-white' },
-                            { id: 'none', label: 'None', class: 'bg-gray-100 text-gray-500' },
-                        ].map(style => (
-                            <button
-                                key={style.id}
-                                onClick={() => handleFormChange({ target: { name: 'techStackStyle', value: style.id } })}
-                                className={`py-2 text-xs font-medium rounded-lg transition-all ${style.class} ${formData.techStackStyle === style.id ? 'ring-2 ring-blue-500 ring-offset-1' : 'opacity-70 hover:opacity-100'}`}
-                            >
-                                {style.label}
-                            </button>
-                        ))}
-                    </div>
-                </div>
-
-            </div>
-
-            {/* Individual Background Toggle */}
-            <div className="flex items-center gap-2">
-                <input
-                    type="checkbox"
-                    id="techStackIndividual"
-                    checked={formData.techStackIndividual || false}
-                    onChange={(e) => handleFormChange({ target: { name: 'techStackIndividual', value: e.target.checked } })}
-                    className="w-4 h-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500"
-                />
-                <label htmlFor="techStackIndividual" className="text-xs text-gray-600 select-none cursor-pointer">
-                    Apply to individual items
-                </label>
-            </div>
-
-            {/* Icon Size */}
-            <div>
-                <div className="flex items-center justify-between mb-2">
-                    <label className="text-sm font-medium text-gray-700">Icon Size</label>
-                    <span className="text-xs text-gray-500">{formData.iconSize}px</span>
-                </div>
-                <input
-                    type="range"
-                    min="16"
-                    max="64"
-                    step="4"
-                    name="iconSize"
-                    value={formData.iconSize || 32}
-                    onChange={handleFormChange}
-                    className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
-                />
-            </div>
-        </div >
-    );
 
     const renderThemeParams = () => (
         <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
@@ -546,8 +227,21 @@ const PropertiesPanel = ({
 
     return (
         <div className="p-6">
-            {activeTool === 'profile' && renderProfileParams()}
-            {activeTool === 'tech' && renderTechParams()}
+            {activeTool === 'profile' && (
+                <ProfileEditor
+                    formData={formData}
+                    handleFormChange={handleFormChange}
+                />
+            )}
+            {activeTool === 'tech' && (
+                <TechStackSelector
+                    selectedTech={selectedTech}
+                    handleTechSelect={handleTechSelect}
+                    handleTechRemove={handleTechRemove}
+                    formData={formData}
+                    handleFormChange={handleFormChange}
+                />
+            )}
             {activeTool === 'theme' && renderThemeParams()}
             {activeTool === 'ai' && (
                 <AIChat
@@ -564,6 +258,7 @@ const PropertiesPanel = ({
                     <p>Export options coming soon!</p>
                 </div>
             )}
+            <UpgradeModal isOpen={isUpgradeModalOpen} onClose={() => setIsUpgradeModalOpen(false)} />
         </div>
     );
 };

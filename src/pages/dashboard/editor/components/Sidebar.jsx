@@ -16,8 +16,8 @@ const Sidebar = ({ activeTool, setActiveTool, onToolSelect }) => {
     ];
 
     const menuItems = [
-        { id: 'watermark', label: 'Watermark', icon: Waves },
-        { id: 'code-editor', label: 'Code editor', icon: LayoutTemplate },
+        { id: 'watermark', label: 'Text', icon: Waves },
+        { id: 'code-editor', label: 'Stack Icons', icon: LayoutTemplate },
         { id: 'background', label: 'Background', icon: Image },
     ];
 
