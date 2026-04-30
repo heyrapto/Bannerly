@@ -45,6 +45,18 @@ const AIChat = ({ formData, setFormData, selectedTech, handleTechSelect, handleT
             setFormData(prev => ({ ...prev, github }));
             response = `Updated GitHub handle.`;
         }
+        // LinkedIn
+        else if (lowerText.includes("linkedin")) {
+            const linkedin = text.split(" ").pop();
+            setFormData(prev => ({ ...prev, linkedin }));
+            response = `Updated LinkedIn handle.`;
+        }
+        // Instagram
+        else if (lowerText.includes("instagram")) {
+            const instagram = text.split(" ").pop();
+            setFormData(prev => ({ ...prev, instagram }));
+            response = `Updated Instagram handle.`;
+        }
         // Add Tech
         else if (lowerText.includes("add")) {
             const techQuery = text.replace("add", "").trim().toLowerCase();
