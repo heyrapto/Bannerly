@@ -57,7 +57,7 @@ const BannerCard = ({ formData, setFormData, selectedTech, availableLanguages })
                         value={formData.field}
                         onChange={(e) => setFormData(prev => ({ ...prev, field: e.target.value }))}
                         placeholder="Software Engineer"
-                        className={`text-xl font-medium text-white/90 tracking-wide drop-shadow-md uppercase bg-transparent border-none w-full focus:outline-none focus:ring-0 placeholder-white/50 ${formData.layout === 'modern' ? 'text-left' : 'text-center'}`}
+                        className={`text-xl font-medium text-white/90 tracking-wide drop-shadow-md bg-transparent border-none w-full focus:outline-none focus:ring-0 placeholder-white/50 ${formData.layout === 'modern' ? 'text-left' : 'text-center'}`}
                     />
 
                     {/* Socials - Moved here for Modern Layout */}

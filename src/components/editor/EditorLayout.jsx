@@ -44,7 +44,7 @@ const EditorLayout = ({
             {/* Main Editor Area */}
             <div className="flex-1 flex flex-col md:flex-row overflow-hidden relative pb-[60px] md:pb-0">
                 {/* Left Sidebar - Desktop */}
-                <div className="hidden md:block w-72 bg-white border-r border-gray-200 flex-shrink-0 z-20">
+                <div className="hidden md:block w-24 flex-shrink-0 z-20">
                     {sidebar}
                 </div>
 

@@ -43,7 +43,7 @@ const ProfileEditor = ({ formData, handleFormChange }) => {
                 </div>
 
                 <div className="group">
-                    <label className="flex items-center gap-2 text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">
+                    <label className="flex items-center gap-2 text-xs font-bold text-gray-500 tracking-wider mb-1.5">
                         <Briefcase size={12} />
                         Role / Title
                     </label>

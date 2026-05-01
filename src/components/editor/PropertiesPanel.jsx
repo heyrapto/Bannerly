@@ -247,11 +247,6 @@ const PropertiesPanel = ({
                     availableLanguages={availableLanguages}
                 />
             )}
-            {activeTool === 'export' && (
-                <div className="text-center py-10 text-gray-500">
-                    <p>Export options coming soon!</p>
-                </div>
-            )}
         </div>
     );
 };
