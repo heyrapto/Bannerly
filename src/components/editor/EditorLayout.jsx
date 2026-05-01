@@ -36,7 +36,7 @@ const EditorLayout = ({
     };
 
     return (
-        <div className="flex flex-col h-screen bg-gray-50 text-gray-900 font-sans">
+        <div className="flex flex-col h-screen bg-[#F9FAFB] text-gray-900 font-sans">
             <MobileWarningModal />
             {/* Top Navigation */}
             <Header onThemeSelect={onThemeSelect} bannerRef={bannerRef} />
@@ -66,8 +66,10 @@ const EditorLayout = ({
                     </div>
                 </div>
                 {/* Properties Panel - Right Sidebar - Desktop */}
-                <div className="hidden md:block w-80 flex-shrink-0 bg-white border-l border-gray-200 overflow-y-auto z-20">
-                    {properties}
+                <div className="hidden md:block w-[400px] flex-shrink-0 bg-[#F9FAFB] border-l border-gray-100 overflow-y-auto z-20 py-8 px-4">
+                    <div className="bg-white rounded-[32px] border border-gray-200 shadow-sm h-full overflow-hidden custom-scrollbar">
+                        {properties}
+                    </div>
                 </div>
             </div>
 

@@ -15,13 +15,28 @@ html, body {
     margin: 0;
     padding: 0;
     overscroll-behavior: none;
-    background: #fff;
+    background: #F9FAFB;
 }  
 
 body {
-    background: #fff;
-    background-color: transparent;
     width: 100%;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #E5E7EB;
+    border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #D1D5DB;
 }
 
 .circle{

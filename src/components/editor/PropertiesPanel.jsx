@@ -220,24 +220,8 @@ const PropertiesPanel = ({
     );
 
     return (
-        <div className="p-6">
-            {activeTool === 'profile' && (
-                <ProfileEditor
-                    formData={formData}
-                    handleFormChange={handleFormChange}
-                />
-            )}
-            {activeTool === 'tech' && (
-                <TechStackSelector
-                    selectedTech={selectedTech}
-                    handleTechSelect={handleTechSelect}
-                    handleTechRemove={handleTechRemove}
-                    formData={formData}
-                    handleFormChange={handleFormChange}
-                />
-            )}
-            {activeTool === 'theme' && renderThemeParams()}
-            {activeTool === 'ai' && (
+        <div className="h-full flex flex-col overflow-hidden">
+            {activeTool === 'ai' ? (
                 <AIChat
                     formData={formData}
                     setFormData={setFormData}
@@ -246,6 +230,25 @@ const PropertiesPanel = ({
                     handleTechRemove={handleTechRemove}
                     availableLanguages={availableLanguages}
                 />
+            ) : (
+                <div className="flex-1 overflow-y-auto custom-scrollbar p-6">
+                    {activeTool === 'profile' && (
+                        <ProfileEditor
+                            formData={formData}
+                            handleFormChange={handleFormChange}
+                        />
+                    )}
+                    {activeTool === 'tech' && (
+                        <TechStackSelector
+                            selectedTech={selectedTech}
+                            handleTechSelect={handleTechSelect}
+                            handleTechRemove={handleTechRemove}
+                            formData={formData}
+                            handleFormChange={handleFormChange}
+                        />
+                    )}
+                    {activeTool === 'theme' && renderThemeParams()}
+                </div>
             )}
         </div>
     );
