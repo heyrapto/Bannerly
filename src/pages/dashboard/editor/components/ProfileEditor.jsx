@@ -113,7 +113,7 @@ const ProfileEditor = ({ formData, handleFormChange }) => {
             </div>
 
             {/* Watermark Toggle */}
-            <div className="bg-gradient-to-br from-gray-50 to-gray-100/50 rounded-2xl p-3 border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300">
+            {/* <div className="bg-gradient-to-br from-gray-50 to-gray-100/50 rounded-2xl p-3 border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
                         <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center shadow-sm border border-gray-100">
@@ -154,7 +154,7 @@ const ProfileEditor = ({ formData, handleFormChange }) => {
                         </label>
                     </div>
                 </div>
-            </div>
+            </div> */}
 
             <UpgradeModal isOpen={isUpgradeModalOpen} onClose={() => setIsUpgradeModalOpen(false)} />
         </div>

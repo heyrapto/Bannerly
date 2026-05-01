@@ -5,24 +5,16 @@ const MobileWarningModal = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
-        const checkMobile = () => {
-            const isMobile = window.innerWidth < 768;
-            // For testing purposes, we're removing the sessionStorage check so it always shows on mobile
-            // const hasShown = sessionStorage.getItem('mobileWarningShown');
+        const hasShown = sessionStorage.getItem('mobileWarningShown');
+        if (!hasShown && window.innerWidth < 768) {
+            setIsOpen(true);
+        }
+    }, []);
 
-            if (isMobile && !isOpen) {
-                setIsOpen(true);
-                // sessionStorage.setItem('mobileWarningShown', 'true');
-            }
-        };
-
-        // Check on mount
-        checkMobile();
-
-        // Check on resize
-        window.addEventListener('resize', checkMobile);
-        return () => window.removeEventListener('resize', checkMobile);
-    }, [isOpen]);
+    const handleDismiss = () => {
+        sessionStorage.setItem('mobileWarningShown', 'true');
+        setIsOpen(false);
+    };
 
     if (!isOpen) return null;
 
@@ -30,7 +22,7 @@ const MobileWarningModal = () => {
         <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-in fade-in duration-300">
             <div className="bg-white rounded-2xl shadow-xl max-w-sm w-full p-6 relative animate-in zoom-in-95 duration-300">
                 <button
-                    onClick={() => setIsOpen(false)}
+                    onClick={handleDismiss}
                     className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
                 >
                     <X size={20} />
@@ -48,7 +40,7 @@ const MobileWarningModal = () => {
                     </p>
 
                     <button
-                        onClick={() => setIsOpen(false)}
+                        onClick={handleDismiss}
                         className="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl transition-colors shadow-sm"
                     >
                         Continue Anyway

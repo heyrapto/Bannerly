@@ -146,11 +146,11 @@ const BannerCard = ({ formData, setFormData, selectedTech, availableLanguages })
             </div>
 
             {/* Watermark (Optional) */}
-            {(formData.showWatermark !== false) && (
+            {/* {(formData.showWatermark !== false) && (
                 <div className="absolute bottom-3 right-4 text-[10px] text-white/40 font-medium tracking-widest uppercase">
                     Made with Bannerly
                 </div>
-            )}
+            )} */}
         </div>
     );
 };
