@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import DashboardLayout from './components/DashboardLayout';
+import DashboardLayout from '../../components/layout/DashboardLayout';
 import Projects from './views/Projects';
 import Templates from './views/Templates';
 import Leaderboard from './views/Leaderboard';

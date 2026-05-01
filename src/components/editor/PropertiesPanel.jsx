@@ -1,10 +1,10 @@
 
 import React, { useMemo, useState, useRef, useEffect } from 'react';
 import { User, Briefcase, Twitter, Github, Search, X, Upload, Check, ChevronDown, Layout, Maximize2, Sliders, Image as ImageIcon, Edit3, Lock } from 'lucide-react';
-import { PRESET_THEMES, PATTERN_STYLES } from '../constants';
-import { TECH_STACK_CONFIG } from '../../../../config/techStack';
-import { MAX_STACK_SELECTIONS } from '../../../../constants';
-import { uploadImage } from '../../../../utils/uploadImage';
+import { PRESET_THEMES, PATTERN_STYLES } from '../../utils/constants';
+import { TECH_STACK_CONFIG } from '../../config/techStack';
+import { MAX_STACK_SELECTIONS } from '../../constants';
+import { uploadImage } from '../../utils/uploadImage';
 import AIChat from './AIChat';
 import ColorPickerPopover from './ColorPickerPopover';
 import MediaLibraryModal from './MediaLibraryModal';

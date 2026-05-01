@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { Search, X, Check, ChevronDown, Sliders, LayoutGrid, List } from 'lucide-react';
-import { TECH_STACK_CONFIG } from '../../../../config/techStack';
-import { MAX_STACK_SELECTIONS } from '../../../../constants';
+import { TECH_STACK_CONFIG } from '../../config/techStack';
+import { MAX_STACK_SELECTIONS } from '../../constants';
 
 const TechStackSelector = ({
     selectedTech,

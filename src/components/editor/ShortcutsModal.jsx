@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { X } from 'lucide-react';
-import { SHORTCUTS_CONFIG } from '../../../../config/shortcuts';
+import { SHORTCUTS_CONFIG } from '../../config/shortcuts';
 
 const ShortcutsModal = ({ isOpen, onClose }) => {
     return (

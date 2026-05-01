@@ -1,6 +1,6 @@
 import React from 'react';
 import { Twitter, Github, Linkedin, Instagram, MapPin, Link as LinkIcon } from 'lucide-react';
-import { PATTERN_STYLES } from '../constants';
+import { PATTERN_STYLES } from '../../utils/constants';
 
 const BannerCard = ({ formData, setFormData, selectedTech, availableLanguages }) => {
     // Helper to get tech stack style

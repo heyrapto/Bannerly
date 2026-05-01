@@ -3,13 +3,13 @@ import { useLocalStorage } from "../../../hooks/useLocalStorage";
 import { useKeyboardShortcuts } from "../../../hooks/useKeyboardShortcuts";
 import { TECH_STACK_CONFIG } from "../../../config/techStack";
 import { MAX_STACK_SELECTIONS } from "../../../constants";
-import EditorLayout from "./components/EditorLayout";
-import Sidebar from "./components/Sidebar";
-import Canvas from "./components/Canvas";
-import PropertiesPanel from "./components/PropertiesPanel";
-import BannerCard from "./components/BannerCard";
-import { PRESET_THEMES, PATTERN_STYLES } from "./constants";
-import LoadingScreen from "./components/LoadingScreen";
+import EditorLayout from "../../../components/editor/EditorLayout";
+import Sidebar from "../../../components/editor/Sidebar";
+import Canvas from "../../../components/editor/Canvas";
+import PropertiesPanel from "../../../components/editor/PropertiesPanel";
+import BannerCard from "../../../components/editor/BannerCard";
+import { PRESET_THEMES, PATTERN_STYLES } from "../../../utils/constants";
+import LoadingScreen from "../../../components/editor/LoadingScreen";
 
 const initialFormState = {
     name: "",

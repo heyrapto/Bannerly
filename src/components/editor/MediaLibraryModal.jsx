@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { X, Search, Upload, Image as ImageIcon, Smile, Hand, Box } from 'lucide-react';
 import { Dialog } from '@headlessui/react';
-import { uploadImage } from '../../../../utils/uploadImage';
+import { uploadImage } from '../../utils/uploadImage';
 
 // Mock Data for Library
 const LIBRARY_CATEGORIES = [
@@ -93,7 +93,7 @@ const MediaLibraryModal = ({ isOpen, onClose, onSelect }) => {
                             className={`px-4 py-3 text-sm font-medium border-b-2 transition-colors ${activeTab === 'custom' ? 'border-blue-600 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-700'}`}
                             onClick={() => setActiveTab('custom')}
                         >
-                            Custom Images <span className="ml-1 text-xs bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded-full">PRO</span>
+                            Custom Images
                         </button>
                     </div>
 

@@ -1,11 +1,11 @@
 import React, { Fragment, useState } from 'react';
 import { LayoutDashboard, Palette, Download, Share2, MonitorPlay, Keyboard, Image as ImageIcon, Copy, FileText, Video, Lock, User } from 'lucide-react';
 import { Menu, Transition, Popover } from '@headlessui/react';
-import { PRESET_THEMES } from '../constants';
-import { downloadImage } from '../../../../utils/downloadImage';
+import { PRESET_THEMES } from '../../utils/constants';
+import { downloadImage } from '../../utils/downloadImage';
 import ShortcutsModal from './ShortcutsModal';
 import ShareModal from './ShareModal';
-import { useToast } from '../../../../context/ToastContext';
+import { useToast } from '../../context/ToastContext';
 import { useNavigate } from 'react-router-dom';
 
 const Header = ({ onThemeSelect, bannerRef }) => {
@@ -152,23 +152,21 @@ const Header = ({ onThemeSelect, bannerRef }) => {
                             <div className="p-1">
                                 <Menu.Item>
                                     {({ active }) => (
-                                        <button className={`${active ? 'bg-gray-50' : ''} group flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm text-gray-700 opacity-50 cursor-not-allowed`}>
+                                        <button className={`${active ? 'bg-gray-50' : ''} group flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm text-gray-700`}>
                                             <div className="flex items-center gap-3">
                                                 <FileText size={16} className="text-gray-500" />
                                                 Download PDF
                                             </div>
-                                            <Lock size={12} className="text-gray-400" />
                                         </button>
                                     )}
                                 </Menu.Item>
                                 <Menu.Item>
                                     {({ active }) => (
-                                        <button className={`${active ? 'bg-gray-50' : ''} group flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm text-gray-700 opacity-50 cursor-not-allowed`}>
+                                        <button className={`${active ? 'bg-gray-50' : ''} group flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm text-gray-700`}>
                                             <div className="flex items-center gap-3">
                                                 <Video size={16} className="text-gray-500" />
                                                 Export Video
                                             </div>
-                                            <span className="text-[10px] font-bold bg-purple-100 text-purple-600 px-1.5 py-0.5 rounded">BETA</span>
                                         </button>
                                     )}
                                 </Menu.Item>
@@ -201,9 +199,6 @@ const Header = ({ onThemeSelect, bannerRef }) => {
                 >
                     <Keyboard size={16} />
                     Shortcuts
-                </button>
-                <button className="w-9 h-9 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-200 transition-colors overflow-hidden">
-                    <User size={18} />
                 </button>
             </div>
 

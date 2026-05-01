@@ -3,8 +3,8 @@ import Header from './Header';
 import SlidesPanel from './SlidesPanel';
 import MobileBottomNav from './MobileBottomNav';
 import { X } from 'lucide-react';
-import { downloadImage } from '../../../../utils/downloadImage';
-import MobileWarningModal from '../../../../components/ui/MobileWarningModal';
+import { downloadImage } from '../../utils/downloadImage';
+import MobileWarningModal from '../ui/MobileWarningModal';
 
 const EditorLayout = ({
     sidebar,

@@ -1,6 +1,6 @@
 import React from 'react';
 import DashboardSidebar from './DashboardSidebar';
-import Navbar from '../../../components/layout/Navbar';
+import Navbar from './Navbar';
 
 const DashboardLayout = ({ children, activeView, setActiveView }) => {
     return (
