@@ -16,6 +16,8 @@ const initialFormState = {
     field: "",
     twitter: "",
     github: "",
+    linkedin: "",
+    instagram: "",
     rgbabackground: "linear-gradient(to right, #4f46e5, #9333ea)",
     layout: "standard",
     techStackStyle: "glass",

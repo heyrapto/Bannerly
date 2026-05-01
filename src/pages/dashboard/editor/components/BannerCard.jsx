@@ -1,5 +1,5 @@
 import React from 'react';
-import { Twitter, Github, MapPin, Link as LinkIcon } from 'lucide-react';
+import { Twitter, Github, Linkedin, Instagram, MapPin, Link as LinkIcon } from 'lucide-react';
 import { PATTERN_STYLES } from '../constants';
 
 const BannerCard = ({ formData, setFormData, selectedTech, availableLanguages }) => {
@@ -76,6 +76,20 @@ const BannerCard = ({ formData, setFormData, selectedTech, availableLanguages })
                                     <span className="font-medium">{formData.github}</span>
                                 </div>
                             )}
+
+                            {formData.linkedin && (
+                                <div className="flex items-center gap-2 text-white/90 drop-shadow-md">
+                                    <Linkedin size={20} fill="currentColor" className="text-blue-300" />
+                                    <span className="font-medium">{formData.linkedin}</span>
+                                </div>
+                            )}
+
+                            {formData.instagram && (
+                                <div className="flex items-center gap-2 text-white/90 drop-shadow-md">
+                                    <Instagram size={20} className="text-pink-400" />
+                                    <span className="font-medium">@{formData.instagram.replace('@', '')}</span>
+                                </div>
+                            )}
                         </div>
                     )}
                 </div>
@@ -139,6 +153,20 @@ const BannerCard = ({ formData, setFormData, selectedTech, availableLanguages })
                             <div className="flex items-center gap-2 text-white/90 drop-shadow-md">
                                 <Github size={20} fill="currentColor" />
                                 <span className="font-medium">{formData.github}</span>
+                            </div>
+                        )}
+
+                        {formData.linkedin && (
+                            <div className="flex items-center gap-2 text-white/90 drop-shadow-md">
+                                <Linkedin size={20} fill="currentColor" className="text-blue-300" />
+                                <span className="font-medium">{formData.linkedin}</span>
+                            </div>
+                        )}
+
+                        {formData.instagram && (
+                            <div className="flex items-center gap-2 text-white/90 drop-shadow-md">
+                                <Instagram size={20} className="text-pink-400" />
+                                <span className="font-medium">@{formData.instagram.replace('@', '')}</span>
                             </div>
                         )}
                     </div>

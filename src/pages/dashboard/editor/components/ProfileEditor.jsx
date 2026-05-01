@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { User, Briefcase, Twitter, Github, Lock, Eye, EyeOff } from 'lucide-react';
+import { User, Briefcase, Twitter, Github, Linkedin, Instagram, Lock, Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '../../../../context/AuthContext';
 import UpgradeModal from './UpgradeModal';
 
@@ -107,6 +107,41 @@ const ProfileEditor = ({ formData, handleFormChange }) => {
                             onChange={handleFormChange}
                             placeholder="username"
                             className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all"
+                        />
+                    </div>
+                </div>
+
+                <div className="group">
+                    <label className="flex items-center gap-2 text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">
+                        <Linkedin size={12} className="text-blue-700" />
+                        LinkedIn
+                    </label>
+                    <div className="relative">
+                        <input
+                            type="text"
+                            name="linkedin"
+                            value={formData.linkedin}
+                            onChange={handleFormChange}
+                            placeholder="username or profile URL"
+                            className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all"
+                        />
+                    </div>
+                </div>
+
+                <div className="group">
+                    <label className="flex items-center gap-2 text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">
+                        <Instagram size={12} className="text-pink-500" />
+                        Instagram
+                    </label>
+                    <div className="relative">
+                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-sm">@</span>
+                        <input
+                            type="text"
+                            name="instagram"
+                            value={formData.instagram.replace(/^@/, '')}
+                            onChange={(e) => handleFormChange({ target: { name: 'instagram', value: e.target.value ? `@${e.target.value.replace(/^@/, '')}` : '' } })}
+                            placeholder="username"
+                            className="w-full pl-8 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all"
                         />
                     </div>
                 </div>
