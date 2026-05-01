@@ -5,7 +5,7 @@ import Navbar from '../../../components/layout/Navbar';
 const DashboardLayout = ({ children, activeView, setActiveView }) => {
     return (
         <div className="flex h-screen bg-white font-sans overflow-hidden">
-            <Navbar btnText="Editor" href="/editor" isDashboard />
+            <Navbar btnText="Open Editor" href="/editor" />
             <div className="pt-[72px] w-full h-full md:px-[100px] px-6">
                 <div className="flex w-full h-full md:max-w-[1440px] mx-auto max-w-full">
                     <DashboardSidebar activeView={activeView} setActiveView={setActiveView} />

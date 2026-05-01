@@ -10,31 +10,28 @@ const Projects = () => {
             {/* Header */}
             <div className="flex items-center justify-between">
                 <h1 className="text-3xl font-bold text-gray-900">Your Projects</h1>
-                <button
-                    onClick={() => navigate('/editor')}
-                    className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors shadow-sm"
-                >
-                    <Plus size={18} />
-                    New
-                </button>
+                <div className="flex items-center gap-3">
+                    <button
+                        onClick={() => navigate('/editor')}
+                        className="flex items-center gap-2 px-4 py-2 bg-neutral-800 text-white font-medium rounded-lg transition-colors shadow-sm"
+                    >
+                        <Plus size={18} />
+                    </button>
+                    {/* <div className="flex items-center gap-2">
+                        <button className="flex items-center gap-2 px-3 py-1.5 border border-gray-200 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+                            Creation Date
+                            <ChevronDown size={14} />
+                        </button>
+                        <button className="p-1.5 border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 transition-colors">
+                            <ArrowDown size={16} />
+                        </button>
+                    </div> */}
+                </div>
             </div>
 
             {/* Toolbar */}
             <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                    <button className="p-2 bg-gray-50 hover:bg-gray-100 rounded-lg text-gray-500 transition-colors">
-                        <Home size={18} />
-                    </button>
-                </div>
-                <div className="flex items-center gap-2">
-                    <button className="flex items-center gap-2 px-3 py-1.5 border border-gray-200 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
-                        Creation Date
-                        <ChevronDown size={14} />
-                    </button>
-                    <button className="p-1.5 border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 transition-colors">
-                        <ArrowDown size={16} />
-                    </button>
-                </div>
+
             </div>
 
             {/* Grid */}

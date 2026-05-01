@@ -7,7 +7,7 @@ import MissionSection from "../../components/sections/Mission";
 const OnBoarding = () => {
   return (
     <main className="flex flex-col gap-10">
-      <Navbar btnText={"Get Started"} href={"/editor"} />
+      <Navbar btnText={"Open Editor"} href={"/editor"} />
       <HeroSection />
       <FeaturesSection />
       <MissionSection />

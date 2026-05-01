@@ -1,20 +1,16 @@
 import React, { Fragment, useState } from 'react';
-import { LayoutDashboard, Palette, Download, Share2, MonitorPlay, Keyboard, User, ChevronDown, Image as ImageIcon, Copy, FileText, Video, Lock } from 'lucide-react';
+import { LayoutDashboard, Palette, Download, Share2, MonitorPlay, Keyboard, Image as ImageIcon, Copy, FileText, Video, Lock, User } from 'lucide-react';
 import { Menu, Transition, Popover } from '@headlessui/react';
 import { PRESET_THEMES } from '../constants';
 import { downloadImage } from '../../../../utils/downloadImage';
 import ShortcutsModal from './ShortcutsModal';
 import ShareModal from './ShareModal';
-import SignInModal from '../../../../components/auth/SignInModal';
-import { useAuth } from '../../../../context/AuthContext';
 import { useToast } from '../../../../context/ToastContext';
 import { useNavigate } from 'react-router-dom';
 
 const Header = ({ onThemeSelect, bannerRef }) => {
     const [isShortcutsOpen, setIsShortcutsOpen] = useState(false);
     const [isShareOpen, setIsShareOpen] = useState(false);
-    const [isSignInOpen, setIsSignInOpen] = useState(false);
-    const { user, logout } = useAuth();
     const { addToast } = useToast();
     const navigate = useNavigate();
 
@@ -197,23 +193,8 @@ const Header = ({ onThemeSelect, bannerRef }) => {
                 </button>
             </div >
 
-            {/* Right: User & Upgrade */}
-            < div className="flex items-center gap-4" >
-                {!user ? (
-                    <button
-                        onClick={() => setIsSignInOpen(true)}
-                        className="hidden md:flex px-4 py-2 bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white text-sm font-medium rounded-lg transition-all shadow-sm items-center gap-1"
-                    >
-                        <span className="text-yellow-300">✨</span> Upgrade
-                    </button>
-                ) : (
-                    <div className="hidden md:flex items-center gap-2 px-3 py-1.5 bg-purple-50 text-purple-700 rounded-lg text-sm font-medium border border-purple-100">
-                        <span className="text-yellow-500">★</span> Pro Plan
-                    </div>
-                )}
-
-                <div className="hidden md:block h-8 w-px bg-gray-200"></div>
-
+            {/* Right: Actions */}
+            <div className="flex items-center gap-3">
                 <button
                     onClick={() => setIsShortcutsOpen(true)}
                     className="hidden md:flex items-center gap-2 px-3 py-1.5 border border-gray-200 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
@@ -221,21 +202,15 @@ const Header = ({ onThemeSelect, bannerRef }) => {
                     <Keyboard size={16} />
                     Shortcuts
                 </button>
-
                 <button className="w-9 h-9 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-200 transition-colors overflow-hidden">
-                    {user ? (
-                        <img src={user.avatar} alt={user.name} className="w-full h-full object-cover" />
-                    ) : (
-                        <User size={18} />
-                    )}
+                    <User size={18} />
                 </button>
-            </div >
+            </div>
 
             {/* Modals */}
             <ShortcutsModal isOpen={isShortcutsOpen} onClose={() => setIsShortcutsOpen(false)} />
             <ShareModal isOpen={isShareOpen} onClose={() => setIsShareOpen(false)} />
-            <SignInModal isOpen={isSignInOpen} onClose={() => setIsSignInOpen(false)} />
-        </header >
+        </header>
     );
 };
 

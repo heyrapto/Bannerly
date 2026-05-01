@@ -1,17 +1,13 @@
 
 import React, { useMemo, useState, useRef, useEffect } from 'react';
-import { User, Briefcase, Twitter, Github, Search, X, Upload, Check, ChevronDown, Layout, Maximize2, Sliders, Image as ImageIcon, Edit3 } from 'lucide-react';
-import { PRESET_THEMES, PATTERN_STYLES } from '../constants'; // We'll export these from page or move them
+import { User, Briefcase, Twitter, Github, Search, X, Upload, Check, ChevronDown, Layout, Maximize2, Sliders, Image as ImageIcon, Edit3, Lock } from 'lucide-react';
+import { PRESET_THEMES, PATTERN_STYLES } from '../constants';
 import { TECH_STACK_CONFIG } from '../../../../config/techStack';
 import { MAX_STACK_SELECTIONS } from '../../../../constants';
-
 import { uploadImage } from '../../../../utils/uploadImage';
 import AIChat from './AIChat';
-import { useAuth } from '../../../../context/AuthContext';
-import { Lock } from 'lucide-react';
 import ColorPickerPopover from './ColorPickerPopover';
 import MediaLibraryModal from './MediaLibraryModal';
-import UpgradeModal from './UpgradeModal';
 import TechStackSelector from './TechStackSelector';
 import ProfileEditor from './ProfileEditor';
 
@@ -27,8 +23,6 @@ const PropertiesPanel = ({
     const [isUploading, setIsUploading] = useState(false);
     const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
     const [isMediaLibraryOpen, setIsMediaLibraryOpen] = useState(false);
-    const [isUpgradeModalOpen, setIsUpgradeModalOpen] = useState(false);
-    const { user } = useAuth();
 
     const handleFormChange = (e) => {
         const { name, value } = e.target;
@@ -258,7 +252,6 @@ const PropertiesPanel = ({
                     <p>Export options coming soon!</p>
                 </div>
             )}
-            <UpgradeModal isOpen={isUpgradeModalOpen} onClose={() => setIsUpgradeModalOpen(false)} />
         </div>
     );
 };
