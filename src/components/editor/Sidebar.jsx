@@ -9,9 +9,9 @@ const Sidebar = ({ activeTool, setActiveTool }) => {
     ];
 
     return (
-        <div className="flex flex-col items-center py-8 h-full w-24 bg-[#F9FAFB] border-r border-gray-100">
+        <div className="flex flex-col items-center h-full pointer-events-none">
             {/* The Main Pill Container */}
-            <div className="flex flex-col items-center py-4 px-2 bg-white rounded-[40px] border border-gray-200 shadow-sm gap-2">
+            <div className="flex flex-col items-center py-4 px-2 bg-white rounded-[40px] border border-gray-200 shadow-sm gap-2 pointer-events-auto">
                 {menuItems.map((item) => {
                     const isActive = activeTool === item.id;
                     return (

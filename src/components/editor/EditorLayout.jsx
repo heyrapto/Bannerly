@@ -44,7 +44,7 @@ const EditorLayout = ({
             {/* Main Editor Area */}
             <div className="flex-1 flex flex-col md:flex-row overflow-hidden relative pb-[60px] md:pb-0">
                 {/* Left Sidebar - Desktop */}
-                <div className="hidden md:block w-24 flex-shrink-0 z-20">
+                <div className="hidden md:block absolute left-4 top-4 bottom-4 z-40">
                     {sidebar}
                 </div>
 
@@ -66,8 +66,8 @@ const EditorLayout = ({
                     </div>
                 </div>
                 {/* Properties Panel - Right Sidebar - Desktop */}
-                <div className="hidden md:block w-[400px] flex-shrink-0 bg-[#F9FAFB] border-l border-gray-100 overflow-y-auto z-20 py-8 px-4">
-                    <div className="bg-white rounded-[32px] border border-gray-200 shadow-sm h-full overflow-hidden custom-scrollbar">
+                <div className="hidden md:block absolute right-4 top-4 bottom-4 w-[400px] z-40 pointer-events-none">
+                    <div className="bg-white rounded-[32px] border border-gray-200 shadow-xl h-full overflow-hidden custom-scrollbar pointer-events-auto">
                         {properties}
                     </div>
                 </div>
