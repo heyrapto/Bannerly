@@ -10,7 +10,7 @@ const Canvas = ({ children, bannerRef }) => {
     const handleReset = () => setZoom(1);
 
     return (
-        <div className="flex-1 relative bg-gray-100 overflow-hidden flex flex-col">
+        <div className="flex-1 relative bg-transparent overflow-hidden flex flex-col">
             {/* Canvas Area */}
             <div className="flex-1 flex items-center justify-center p-4 md:p-8 overflow-auto">
                 <div

@@ -42,27 +42,20 @@ const Header = ({ onThemeSelect, bannerRef }) => {
     };
 
     return (
-        <header className="h-16 flex items-center justify-between px-4 z-40 relative">
+        <header className="h-16 flex items-center justify-between px-4 z-40 relative bg-transparent pointer-events-none mt-2">
             {/* Left: Logo & Navigation */}
-            <div className="flex items-center gap-6 cursor-pointer">
+            <div className="flex items-center gap-2 cursor-pointer pointer-events-auto bg-white border border-gray-200 shadow-sm rounded-full pl-2 pr-4 py-1.5 h-12">
                 <div className="flex items-center" onClick={() => navigate("/")}>
-                    <img src="/logo.svg" width={50} alt="" />
-                    <span className="font-bold text-neutral-700 text-lg hidden md:block">headerio</span>
+                    <img src="/logo.svg" width={40} alt="" />
+                    <span className="font-bold text-neutral-700 text-lg block ml-2">headerio</span>
                 </div>
 
-                <div className="hidden md:flex items-center gap-1 bg-white border border-gray-200 rounded-lg p-1">
-                    <button className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-md transition-colors" onClick={() => navigate("/dashboard")}>
-                        <div className="w-5 h-5 bg-purple-100 text-purple-600 rounded flex items-center justify-center">
-                            <LayoutDashboard size={14} />
-                        </div>
-                        Dashboard
-                    </button>
-                    <div className="w-px h-4 bg-gray-200 mx-1"></div>
-
+                <div className="hidden md:flex items-center gap-1">
                     {/* Theme Dropdown */}
+                    <div className="w-px h-5 bg-gray-200 mx-2"></div>
                     <Popover className="relative">
-                        <Popover.Button className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-md transition-colors outline-none">
-                            <div className="w-5 h-5 bg-orange-100 text-orange-600 rounded flex items-center justify-center">
+                        <Popover.Button className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-full transition-colors outline-none">
+                            <div className="w-5 h-5 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center">
                                 <Palette size={14} />
                             </div>
                             Theme
@@ -107,10 +100,10 @@ const Header = ({ onThemeSelect, bannerRef }) => {
             </div>
 
             {/* Center: Actions */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 pointer-events-auto bg-white border border-gray-200 shadow-sm rounded-full p-1.5 h-12">
                 {/* Export Dropdown */}
                 <Menu as="div" className="relative hidden md:block">
-                    <Menu.Button className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors shadow-sm">
+                    <Menu.Button className="flex items-center gap-2 px-4 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-full transition-colors shadow-sm">
                         <Download size={16} />
                         Export
                     </Menu.Button>
@@ -177,25 +170,25 @@ const Header = ({ onThemeSelect, bannerRef }) => {
 
                 <button
                     onClick={() => setIsShareOpen(true)}
-                    className="flex items-center gap-2 px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white text-sm font-medium rounded-lg transition-colors shadow-sm"
+                    className="flex items-center gap-2 px-4 py-1.5 bg-teal-600 hover:bg-teal-700 text-white text-sm font-medium rounded-full transition-colors shadow-sm"
                 >
                     <Share2 size={16} />
                     <span className="hidden md:inline">Share</span>
                 </button>
                 <button
                     onClick={() => addToast("Presentation mode coming soon!", "info")}
-                    className="hidden md:flex items-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white text-sm font-medium rounded-lg transition-colors shadow-sm"
+                    className="hidden md:flex items-center gap-2 px-4 py-1.5 bg-purple-600 hover:bg-purple-700 text-white text-sm font-medium rounded-full transition-colors shadow-sm"
                 >
                     <MonitorPlay size={16} />
                     Present
                 </button>
-            </div >
+            </div>
 
             {/* Right: Actions */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 pointer-events-auto bg-white border border-gray-200 shadow-sm rounded-full p-1.5 h-12">
                 <button
                     onClick={() => setIsShortcutsOpen(true)}
-                    className="hidden md:flex items-center gap-2 px-3 py-1.5 border border-gray-200 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+                    className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
                 >
                     <Keyboard size={16} />
                     Shortcuts
