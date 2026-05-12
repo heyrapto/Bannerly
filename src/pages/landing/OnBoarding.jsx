@@ -7,13 +7,13 @@ import ReactLenis from "lenis/react"
 
 const OnBoarding = () => {
   return (
-    <ReactLenis root className="flex flex-col gap-10">
+    <main className="flex flex-col gap-10">
       <Navbar btnText={"Open Editor"} href={"/editor"} />
       <HeroSection />
       <FeaturesSection />
       <MissionSection />
       <Footer />
-    </ReactLenis>
+    </main>
   );
 };
 
